@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand New Year Gala - Hotel Pam Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -10,22 +10,24 @@
     <style>
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #050505;
+            background-color: #020202;
             color: #333;
             margin: 0;
-            padding: 10px; /* Reduced padding for mobile */
+            padding: 20px;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevents side-scrolling */
+            overflow-x: hidden;
         }
 
-        /* --- FIREWORKS ANIMATION (Optimized for Mobile) --- */
+        /* --- FIREWORKS ANIMATION --- */
         @keyframes firework {
             0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
             50% { width: 0.5vmin; opacity: 1; }
             100% { width: var(--finalSize); opacity: 0; }
         }
         
-        .firework, .firework::before, .firework::after {
+        .firework,
+        .firework::before,
+        .firework::after {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -48,186 +50,215 @@
             background-repeat: no-repeat;
             animation: firework 2s infinite;
         }
-        
-        .firework::before { transform: translate(-50%, -50%) rotate(25deg) !important; }
-        .firework::after { transform: translate(-50%, -50%) rotate(-37deg) !important; }
+
+        .firework::before {
+            transform: translate(-50%, -50%) rotate(25deg) !important; 
+        }
+        .firework::after {
+            transform: translate(-50%, -50%) rotate(-37deg) !important;
+        }
 
         /* --- CARD STYLES --- */
         .menu-card {
-            width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 12px;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); 
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 15px;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.5); 
             position: relative;
             overflow: hidden;
             border: 2px solid #d4af37;
             z-index: 10;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .top-banner {
             background: linear-gradient(to bottom, #2b0c0c, #590505);
             color: white;
-            padding: 30px 15px;
+            padding: 40px 20px;
             text-align: center;
             position: relative;
-            border-bottom: 3px solid #d4af37;
+            border-bottom: 4px solid #d4af37;
         }
 
+        /* Shimmering Gold Text */
         .gold-text {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C, #BF953F);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
         .brand-name {
             font-family: 'Great Vibes', cursive;
-            font-size: 42px; /* Large for phone */
+            font-size: 50px;
             margin: 0;
             line-height: 1.2;
         }
 
         .hotel-name {
             font-family: 'Cinzel', serif;
-            font-size: 12px;
-            letter-spacing: 2px;
+            font-size: 14px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             color: #ddd;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .year-display {
             font-family: 'Cinzel', serif;
-            font-size: 60px;
+            font-size: 70px;
             font-weight: 700;
             line-height: 1;
-            margin: 10px 0;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            margin: 15px 0;
         }
 
         .event-title {
             font-family: 'Cinzel', serif;
-            font-size: 18px;
-            letter-spacing: 1px;
+            font-size: 22px;
+            letter-spacing: 2px;
             color: #fff;
-            margin-top: 5px;
+            margin-top: 10px;
             border-top: 1px solid rgba(255,255,255,0.3);
             border-bottom: 1px solid rgba(255,255,255,0.3);
             display: inline-block;
-            padding: 5px 15px;
+            padding: 5px 20px;
         }
 
         .price-badge {
             position: absolute;
-            bottom: -20px;
+            bottom: -25px;
             left: 50%;
             transform: translateX(-50%);
             background: #d4af37;
             color: #3e0000;
             font-weight: bold;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 18px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             border: 2px solid #fff;
-            white-space: nowrap;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
         }
 
         .content-area {
-            padding: 40px 15px 20px 15px; /* Less side padding for mobile */
+            padding: 60px 25px 30px 25px;
             background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
         }
 
         .section-title {
             color: #8E0E00;
             font-family: 'Cinzel', serif;
-            font-size: 22px;
+            font-size: 26px;
             text-align: center;
-            margin-top: 35px;
-            margin-bottom: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .section-title::before, .section-title::after {
             content: "";
             height: 2px;
-            width: 30px; /* Shorter lines for mobile */
+            width: 50px;
             background: #d4af37;
         }
 
-        .section-title i { color: #d4af37; font-size: 18px; }
+        .section-title i {
+            color: #d4af37;
+            font-size: 20px;
+        }
 
         .subsection {
             text-align: center;
             color: #fff;
             background: #1a1a1a;
-            padding: 6px 15px;
+            padding: 6px 20px;
             border-radius: 20px;
             display: table;
-            margin: 15px auto 10px auto;
-            font-size: 11px;
+            margin: 20px auto 10px auto;
+            font-size: 12px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             border: 1px solid #d4af37;
         }
 
         .item {
             text-align: center;
             margin-bottom: 10px;
-            font-size: 16px; /* Bigger font for phone reading */
-            color: #333;
-            font-weight: 600;
-            line-height: 1.4;
+            font-size: 16px;
+            color: #444;
+            font-weight: 500;
+            transition: transform 0.2s, color 0.2s;
+            cursor: default;
         }
         
-        .veg-mark { color: #2ecc71; margin-right: 5px; font-size: 12px; }
-        .nonveg-mark { color: #e74c3c; margin-right: 5px; font-size: 12px; }
+        /* Interactive Hover Effect on Food Items */
+        .item:hover {
+            transform: scale(1.1);
+            color: #8E0E00;
+        }
+        
+        .veg-mark { color: #2ecc71; margin-right: 8px; font-size: 12px; }
+        .nonveg-mark { color: #e74c3c; margin-right: 8px; font-size: 12px; }
 
         .booking-section {
             background: #fff5e6;
-            margin-top: 30px;
-            padding: 25px 15px;
+            margin-top: 40px;
+            padding: 30px;
             border-radius: 10px;
             text-align: center;
             border: 2px dashed #d4af37;
         }
 
         .order-btn {
-            background: linear-gradient(45deg, #11998e, #38ef7d);
+            background: linear-gradient(45deg, #11998e, #38ef7d, #11998e);
+            background-size: 200% auto;
             color: white;
             text-decoration: none;
-            display: block; /* Full width for mobile */
-            width: 100%;
-            padding: 18px 0;
+            display: inline-block;
+            width: 80%;
+            padding: 18px;
             border-radius: 50px;
             font-weight: bold;
             font-size: 18px;
-            box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-sizing: border-box; /* Ensures padding doesn't break width */
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to { background-position: 200% center; }
         }
 
         .footer {
             text-align: center;
             background: #111;
             color: #888;
-            padding: 20px;
-            font-size: 12px;
+            padding: 30px 20px;
+            font-size: 13px;
+            letter-spacing: 1px;
             border-top: 4px solid #d4af37;
         }
     </style>
@@ -321,9 +352,9 @@
             <div class="item">Premium Ice-Cream</div>
 
             <div class="booking-section">
-                <div style="margin-bottom: 15px; color: #555; font-weight:bold;">Tap below to book:</div>
+                <div style="margin-bottom: 15px; color: #555;">Reserve your table before it's full!</div>
                 <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20tables%20for%20the%20New%20Year%20Buffet" class="order-btn">
-                    <i class="fab fa-whatsapp"></i> Reserve Table
+                    <i class="fab fa-whatsapp"></i> Book Now
                 </a>
             </div>
 
