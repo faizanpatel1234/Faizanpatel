@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Year Buffet - Hotel Pam Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Lato:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body {
             font-family: 'Lato', sans-serif;
-            /* Premium Dark Background for New Year's Eve */
-            background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%);
+            /* Dark festive background with subtle confetti pattern */
+            background-color: #0f0f0f;
+            background-image: radial-gradient(#d4af37 1px, transparent 1px), radial-gradient(#d4af37 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
             color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
         }
         
@@ -21,108 +25,129 @@
             max-width: 650px;
             margin: 0 auto;
             background: #fff;
-            /* Gold Double Border Effect */
-            border: 1px solid #d4af37;
-            outline: 4px solid #fff;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); /* Golden Glow Shadow */
             position: relative;
             overflow: hidden;
+            border: 1px solid #d4af37;
         }
 
-        .inner-border {
-            border: 2px solid #d4af37;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Watermark Background */
-        .menu-card::before {
-            content: "PAM PREMIUM";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 80px;
-            color: rgba(0,0,0,0.03);
-            font-weight: bold;
-            font-family: 'Playfair Display', serif;
-            white-space: nowrap;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .header {
+        /* Top Decorative Banner */
+        .top-banner {
+            background: linear-gradient(135deg, #8E0E00 0%, #1F1C18 100%);
+            color: white;
+            padding: 30px 20px;
             text-align: center;
-            margin-bottom: 30px;
+            position: relative;
         }
-        
+
         .brand-name {
-            font-family: 'Great Vibes', cursive; /* Script font for Arab Ino */
-            font-size: 36px;
-            color: #d4af37;
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: #d4af37; /* Gold */
             margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
-        
+
         .hotel-name {
             font-size: 12px;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #666;
+            color: #ccc;
             margin-bottom: 20px;
         }
 
-        .event-title {
+        .year-text {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: #1a1a1a;
-            margin: 10px 0 5px 0;
-            text-transform: uppercase;
+            font-size: 60px;
+            line-height: 1;
+            font-weight: 800;
+            color: #fff;
+            margin: 10px 0;
+            /* Golden Text Glow Animation */
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37; }
+            to { text-shadow: 0 0 20px #d4af37, 0 0 30px #ff0000; }
+        }
+
+        .event-subtitle {
+            font-size: 16px;
             letter-spacing: 1px;
-            border-bottom: 1px solid #d4af37;
-            display: inline-block;
-            padding-bottom: 10px;
+            color: #FFD700;
+            margin-bottom: 10px;
         }
 
         .price-tag {
-            background: #1a1a1a;
-            color: #d4af37;
+            background: #fff;
+            color: #8E0E00; /* Deep Red */
             display: inline-block;
-            padding: 10px 25px;
-            font-weight: bold;
-            margin-top: 15px;
+            padding: 8px 25px;
+            font-weight: 800;
+            border-radius: 50px;
+            margin-top: 10px;
             font-size: 18px;
-            border: 1px solid #d4af37;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .content-area {
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Watermark */
+        .content-area::before {
+            content: "2026";
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 150px;
+            color: rgba(0,0,0,0.03);
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .section-title {
-            color: #d4af37;
+            color: #8E0E00; /* Festive Red */
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
+            font-size: 24px;
             text-align: center;
-            margin-top: 35px;
+            margin-top: 30px;
             margin-bottom: 15px;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border-bottom: 2px solid #d4af37;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5px;
         }
         
-        /* Decorative line around section titles */
-        .section-title::before, .section-title::after {
-            content: " — ";
-            color: #ccc;
+        .section-title i {
+            color: #d4af37;
+            font-size: 16px;
+            margin: 0 10px;
         }
 
         .subsection {
             text-align: center;
-            color: #666;
+            color: #d4af37; /* Gold */
+            background: #222;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 15px auto 10px auto;
+            font-size: 11px;
             font-weight: bold;
-            margin-top: 15px;
-            margin-bottom: 5px;
             text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .item {
@@ -130,129 +155,132 @@
             margin-bottom: 8px;
             font-size: 15px;
             color: #444;
+            position: relative;
+            z-index: 1;
         }
         
-        .veg-mark { color: #2ecc71; font-size: 12px; vertical-align: middle; margin-right: 5px; }
-        .nonveg-mark { color: #e74c3c; font-size: 12px; vertical-align: middle; margin-right: 5px; }
+        .veg-mark { color: #2ecc71; margin-right: 5px; }
+        .nonveg-mark { color: #e74c3c; margin-right: 5px; }
         
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 11px;
-            color: #888;
-            letter-spacing: 1px;
-        }
-
         .order-btn {
-            background: linear-gradient(to right, #25D366, #128C7E);
+            background: linear-gradient(45deg, #128C7E, #25D366);
             color: white;
             text-decoration: none;
             display: block;
             text-align: center;
             padding: 15px;
-            border-radius: 4px;
-            margin-top: 30px;
+            border-radius: 50px;
+            margin-top: 40px;
             font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-            transition: transform 0.2s;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            position: relative;
+            z-index: 1;
+            border: 2px solid white;
         }
-        .order-btn:hover {
-            transform: translateY(-2px);
+
+        .footer {
+            text-align: center;
+            background: #111;
+            color: #666;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
     <div class="menu-card">
-        <div class="inner-border">
+        
+        <div class="top-banner">
+            <h2 class="brand-name">Arab Ino</h2>
+            <div class="hotel-name">Hotel Pam Premium, Vadodara</div>
             
-            <div class="header">
-                <h2 class="brand-name">Arab Ino</h2>
-                <div class="hotel-name">Hotel Pam Premium, Vadodara</div>
-                
-                <h1 class="event-title">New Year's Eve Gala</h1>
-                <div><span style="font-size: 14px; color: #666;">Welcome 2026</span></div>
-                
-                <div class="price-tag">₹ 749 <span style="font-size: 12px; font-weight: normal;">+ GST</span></div>
-            </div>
+            <div class="event-subtitle">✨ GRAND NEW YEAR BUFFET ✨</div>
+            <div class="year-text">2026</div>
+            
+            <div class="price-tag">₹ 749 <span style="font-size: 12px; color: #666;">+ GST</span></div>
+        </div>
 
-            <div class="section-title">Welcome Drinks</div>
+        <div class="content-area">
+
+            <div class="section-title"><i class="fas fa-glass-cheers"></i> Welcome Drinks <i class="fas fa-glass-cheers"></i></div>
             <div class="item">Chilled Butter Milk</div>
             <div class="item">Signature Mocktail</div>
 
-            <div class="section-title">Soups</div>
-            <div class="item"><i class="fas fa-leaf veg-mark">●</i> Creamy Corn Chowder Soup (Veg)</div>
-            <div class="item"><i class="fas fa-circle nonveg-mark">●</i> Gosht Paya Shorba (Non-Veg)</div>
+            <div class="section-title"><i class="fas fa-mug-hot"></i> Soups <i class="fas fa-mug-hot"></i></div>
+            [cite_start]<div class="item"><span class="veg-mark">●</span> Creamy Corn Chowder Soup (Veg) [cite: 10]</div>
+            [cite_start]<div class="item"><span class="nonveg-mark">●</span> Gosht Paya Shorba (Non-Veg) [cite: 12]</div>
 
-            <div class="section-title">Salad Bar</div>
+            <div class="section-title"><i class="fas fa-carrot"></i> Salad Bar <i class="fas fa-carrot"></i></div>
             <div class="subsection">Garden Fresh</div>
-            <div class="item">Green Garden Salad</div>
-            <div class="item">Balsamic Quinoa Berry Salad</div>
-            <div class="item">Oliver Caesar Salad</div>
-            <div class="subsection">Non-Veg Salad</div>
-            <div class="item">Greek Chickpea Chicken Salad</div>
+            [cite_start]<div class="item">Green Garden Salad [cite: 14]</div>
+            [cite_start]<div class="item">Balsamic Quinoa Berry Salad [cite: 15]</div>
+            [cite_start]<div class="item">Oliver Caesar Salad [cite: 16]</div>
+            
+            <div class="subsection">Non-Veg</div>
+            [cite_start]<div class="item">Greek Chickpea Chicken Salad [cite: 18]</div>
             
             <div class="subsection">Accompaniments</div>
-            <div class="item">Plain Curd | Boondi Raita</div>
-            <div class="item">Pineapple Raita | Curd Rice</div>
+            <div class="item">Plain Curd | [cite_start]Boondi Raita [cite: 20, 21]</div>
+            <div class="item">Pineapple Raita | [cite_start]Curd Rice [cite: 22, 23]</div>
 
-            <div class="section-title">Appetizers</div>
+            <div class="section-title"><i class="fas fa-utensils"></i> Starters <i class="fas fa-utensils"></i></div>
             <div class="subsection">Vegetarian</div>
-            <div class="item">Funghi Alla Trapanese</div>
-            <div class="item">Cheese Jalapeno Cigar</div>
-            <div class="item">Veg Dumplings in Oyster Sauce</div>
-            <div class="item">Paneer Kali Mirch Tikka</div>
+            [cite_start]<div class="item">Funghi Alla Trapanese [cite: 25]</div>
+            [cite_start]<div class="item">Cheese Jalapeno Cigar [cite: 26]</div>
+            [cite_start]<div class="item">Veg Dumplings in Oyster Sauce [cite: 27]</div>
+            [cite_start]<div class="item">Paneer Kali Mirch Tikka [cite: 28]</div>
             
             <div class="subsection">Non-Vegetarian</div>
-            <div class="item">Tangdi Kebab</div>
-            <div class="item">Amritsari Tandoori Jhinga</div>
-            <div class="item">King Fish Fry</div>
-            <div class="item">Kache Keeme Ke Kebab</div>
+            [cite_start]<div class="item">Tangdi Kebab [cite: 30]</div>
+            [cite_start]<div class="item">Amritsari Tandoori Jhinga [cite: 31]</div>
+            [cite_start]<div class="item">King Fish Fry [cite: 32]</div>
+            [cite_start]<div class="item">Kache Keeme Ke Kebab [cite: 33]</div>
 
-            <div class="section-title">Live Station</div>
-            <div class="item"><span class="nonveg-mark">●</span> Mutton Keema with Pav</div>
-            <div class="item"><span class="nonveg-mark">●</span> Murgh Lukhnowi Biryani</div>
-            <div class="item">Kathi Rolls (Veg / Non-Veg)</div>
-            <div class="item"><span class="veg-mark">●</span> Samosa with Ragda</div>
-            <div class="item"><span class="veg-mark">●</span> Pani Puri</div>
+            <div class="section-title"><i class="fas fa-fire"></i> Live Counter <i class="fas fa-fire"></i></div>
+            [cite_start]<div class="item"><span class="nonveg-mark">●</span> Mutton Keema with Pav [cite: 38]</div>
+            [cite_start]<div class="item"><span class="nonveg-mark">●</span> Murgh Lukhnowi Biryani [cite: 39]</div>
+            [cite_start]<div class="item">Kathi Rolls (Veg / Non-Veg) [cite: 40, 41]</div>
+            [cite_start]<div class="item"><span class="veg-mark">●</span> Samosa with Ragda [cite: 42]</div>
+            [cite_start]<div class="item"><span class="veg-mark">●</span> Pani Puri [cite: 43]</div>
 
-            <div class="section-title">Main Course</div>
+            <div class="section-title"><i class="fas fa-drumstick-bite"></i> Main Course <i class="fas fa-drumstick-bite"></i></div>
             
             <div class="subsection">Indian Specialities</div>
-            <div class="item">Methi Chaman</div>
-            <div class="item">Sarson Ka Saag with Missi Roti</div>
-            <div class="item">Nanhi Subzi Ka Mela</div>
-            <div class="item">Dal Makhani</div>
-            <div class="item">Kashmiri Veg Pulao</div>
+            [cite_start]<div class="item">Methi Chaman [cite: 45]</div>
+            [cite_start]<div class="item">Sarson Ka Saag with Missi Roti [cite: 46]</div>
+            [cite_start]<div class="item">Nanhi Subzi Ka Mela [cite: 47]</div>
+            [cite_start]<div class="item">Dal Makhani [cite: 48]</div>
+            [cite_start]<div class="item">Kashmiri Veg Pulao [cite: 49]</div>
 
             <div class="subsection">Global Flavors</div>
-            <div class="item">Singapuri Noodles</div>
-            <div class="item">Veg Manchurian Gravy</div>
-            <div class="item">Baked Mac & Cheese</div>
+            [cite_start]<div class="item">Singapuri Noodles [cite: 51]</div>
+            [cite_start]<div class="item">Veg Manchurian Gravy [cite: 52]</div>
+            [cite_start]<div class="item">Baked Mac & Cheese [cite: 54]</div>
 
             <div class="subsection">Non-Veg Delights</div>
-            <div class="item">Gongura Mamsam</div>
-            <div class="item">Chicken Vindaloo</div>
-            <div class="item">Malabar Prawns Biryani</div>
+            [cite_start]<div class="item">Gongura Mamsam [cite: 56]</div>
+            [cite_start]<div class="item">Chicken Vindaloo [cite: 57]</div>
+            [cite_start]<div class="item">Malabar Prawns Biryani [cite: 58]</div>
 
-            <div class="section-title">Grand Finale</div>
-            <div class="item">Hot Jalebi & Rabdi</div>
-            <div class="item">Gajar Ka Halwa</div>
-            <div class="item">Soan Papdi</div>
-            <div class="item">Assorted Pastries</div>
-            <div class="item">Premium Ice-Cream</div>
+            <div class="section-title"><i class="fas fa-ice-cream"></i> Sweet Endings <i class="fas fa-ice-cream"></i></div>
+            [cite_start]<div class="item">Hot Jalebi & Rabdi [cite: 60, 61]</div>
+            [cite_start]<div class="item">Gajar Ka Halwa [cite: 62]</div>
+            [cite_start]<div class="item">Soan Papdi [cite: 63]</div>
+            [cite_start]<div class="item">Assorted Pastries [cite: 64]</div>
+            [cite_start]<div class="item">Premium Ice-Cream [cite: 65]</div>
 
             <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20tables%20for%20the%20New%20Year%20Buffet" class="order-btn">
-                Reserve Your Table via WhatsApp
+                <i class="fab fa-whatsapp"></i> Reserve Table Now
             </a>
 
-            <div class="footer">
-                <p>HOTEL PAM PREMIUM<br>Vadodara, Gujarat</p>
-                <p>Happy New Year 2026</p>
-            </div>
+        </div>
+
+        <div class="footer">
+            HOTEL PAM PREMIUM<br>
+            [cite_start]Happy New Year 2026 [cite: 3]
         </div>
     </div>
 
