@@ -2,287 +2,568 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Menu - PAM Premium Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-color: #5D4037; /* Earthy brown from logo style */
-            --accent-color: #D7CCC8;
-            --text-color: #333;
-            --bg-color: #f9f9f9;
-            --price-color: #8D6E63;
+            --primary: #3E2723; /* Deep Dark Brown */
+            --secondary: #5D4037; /* Medium Brown */
+            --accent: #C5A059; /* Luxury Gold */
+            --light-bg: #EFEBE9;
+            --white: #ffffff;
+            --success: #2E7D32;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Lato', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: #333;
+            padding-bottom: 80px; /* Space for fixed footer */
         }
 
-        .container {
-            max-width: 600px; /* Mobile focused width */
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            min-height: 100vh;
-        }
-
-        /* Header Section */
+        /* Hero Section */
         header {
-            background-color: var(--primary-color);
-            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem 3rem 1rem;
+            position: relative;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 4px 15px rgba(62, 39, 35, 0.4);
         }
 
         header h1 {
+            font-family: 'Playfair Display', serif;
             margin: 0;
-            font-size: 2rem;
+            font-size: 1.8rem;
             letter-spacing: 1px;
-            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         header h2 {
-            margin: 5px 0 0;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 300;
-            color: var(--accent-color);
-        }
-
-        .contact-info {
-            font-size: 0.85rem;
-            margin-top: 15px;
-            color: #efefef;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* Menu Section */
-        .menu-section {
-            padding: 1.5rem;
-        }
-
-        .category-title {
-            text-align: center;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            margin-top: 30px;
+            margin: 5px 0 15px;
+            opacity: 0.9;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .menu-item {
-            margin-bottom: 20px;
-            border-bottom: 1px dotted #ccc;
-            padding-bottom: 15px;
+        .contact-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 0 8px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            display: inline-block;
+            transition: 0.3s;
         }
 
-        .item-header {
+        .contact-links a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: -25px;
+            gap: 10px;
+            padding: 0 10px;
+        }
+
+        .tab-btn {
+            background: var(--white);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: var(--secondary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
+            flex: 1;
+            max-width: 150px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Search Bar */
+        .search-container {
+            padding: 20px 20px 10px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none; /* Hidden by default */
+            padding: 10px 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Menu Items */
+        .menu-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            font-weight: bold;
-            font-size: 1.1rem;
+            align-items: center;
+            transition: 0.2s;
+            border-left: 4px solid transparent;
         }
 
-        .price {
-            color: var(--price-color);
-            font-size: 1.1rem;
+        .menu-card.in-cart {
+            border-left: 4px solid var(--accent);
+            background: #fffcf5;
         }
 
-        .description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
-            font-style: italic;
+        .item-details {
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .item-desc {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .item-price {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Add Button */
+        .add-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: var(--white);
+            color: var(--secondary);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .menu-card.in-cart .add-btn {
+            background: var(--secondary);
+            color: var(--white);
+            border-color: var(--secondary);
+            transform: rotate(45deg); /* Turns plus to x */
         }
 
         /* Location Table */
-        .location-section {
-            background-color: var(--accent-color);
-            padding: 1.5rem;
-            font-size: 0.9rem;
-        }
-        
-        table {
+        .location-table {
             width: 100%;
-            border-collapse: collapse;
-            background: white;
-            margin-top: 10px;
+            border-collapse: separate;
+            border-spacing: 0 8px;
         }
 
-        th, td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
+        .location-table tr {
+            background: var(--white);
+            box-shadow: var(--shadow);
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #777;
-            font-size: 0.8rem;
+        .location-table td {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
         }
 
-        .btn-call {
-            display: block;
-            width: 100%;
-            padding: 15px 0;
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-weight: bold;
-            position: sticky;
+        .location-table tr td:first-child {
+            border-left: 1px solid #eee;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .location-table tr td:last-child {
+            border-right: 1px solid #eee;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            text-align: right;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Bottom Floating Bar */
+        .bill-bar {
+            position: fixed;
             bottom: 0;
             left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 15px 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
         }
+
+        .bill-bar.visible {
+            transform: translateY(0);
+        }
+
+        .bill-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .bill-total {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .call-btn {
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(62, 39, 35, 0.3);
+        }
+
+        .call-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="container">
     <header>
-        <h1>PAM Premium Hotel</h1>
+        <h1>PAM Premium</h1>
         <h2>Arab Ino</h2>
-        
-        <div class="contact-info">
-            <p>Opp. Suraj Plaza, Sarod, Sayajigunj,<br>Vadodara, Gujarat 390 007</p>
-            <p>Phone: <a href="tel:02652368888">0265-236 8888</a></p>
-            <p><a href="http://www.hotel.pamhotelsindia.com" target="_blank">www.hotel.pamhotelsindia.com</a></p>
+        <div class="contact-links">
+            <a href="tel:02652368888"><i class="fas fa-phone"></i> 0265-236 8888</a>
+            <a href="https://goo.gl/maps/placeholder" target="_blank"><i class="fas fa-map-marker-alt"></i> Navigate</a>
         </div>
     </header>
 
-    <div class="menu-section">
-        <h3 class="category-title">Breakfast</h3>
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('breakfast')">Breakfast</button>
+        <button class="tab-btn" onclick="switchTab('indian')">Indian</button>
+        <button class="tab-btn" onclick="switchTab('places')">Guide</button>
+    </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Cereals with Hot or Cold Milk</span>
-                <span class="price">₹225</span>
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search menu (e.g., 'Omelette')..." onkeyup="filterMenu()">
+    </div>
+
+    <div id="breakfast" class="content-section active">
+        <div class="section-header">Continental & Eggs</div>
+        
+        <div class="menu-grid">
+            <div class="menu-card" data-price="225" data-name="Cereals">
+                <div class="item-details">
+                    <div class="item-name">Cereals with Milk</div>
+                    <div class="item-desc">Choice of Corn Flakes, Choco Flakes, or Museli. Served with hot or cold milk.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">Choice: Corn Flakes/Choco Flakes/Museli; Served with hot or cold milk</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Toast With Butter and Preserves</span>
-                <span class="price">₹300</span>
+            <div class="menu-card" data-price="300" data-name="Toast & Preserves">
+                <div class="item-details">
+                    <div class="item-name">Toast with Butter</div>
+                    <div class="item-desc">2 slices of toasted bread served with butter and marmalade.</div>
+                    <div class="item-price">₹300</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">2 slice of toasted bread served with butter and marmalade</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Egg White Scrambled</span>
-                <span class="price">₹325</span>
+            <div class="menu-card" data-price="325" data-name="Egg White Scrambled">
+                <div class="item-details">
+                    <div class="item-name">Egg White Scrambled</div>
+                    <div class="item-desc">4 Egg whites. Accompanied by a slice of bread and butter.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">4 Eggs White. Accompanied by slice of bread and butter</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Egg White Omelette</span>
-                <span class="price">₹325</span>
+            <div class="menu-card" data-price="325" data-name="Egg White Omelette">
+                <div class="item-details">
+                    <div class="item-name">Egg White Omelette</div>
+                    <div class="item-desc">4 Egg whites. Masala or plain. Served with smiley potato & grilled tomato.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">4 Eggs White. Choose from masala/plain served with smiley potato and grilled tomato</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Omelette (2 Eggs)</span>
-                <span class="price">₹325</span>
+            <div class="menu-card" data-price="325" data-name="Regular Omelette">
+                <div class="item-details">
+                    <div class="item-name">Omelette (2 Eggs)</div>
+                    <div class="item-desc">Masala, Plain, Cheese, or Mushroom. With potato & tomato.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">Choose from masala/plain/cheese/mushroom Accompanied by potato and tomato</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Bread Omelette (2 Eggs)</span>
-                <span class="price">₹325</span>
+            <div class="menu-card" data-price="325" data-name="Bread Omelette">
+                <div class="item-details">
+                    <div class="item-name">Bread Omelette</div>
+                    <div class="item-desc">Bread covered with masala or plain omelette, served with ketchup.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">Bread covered with masala/plain omelette served with tomato ketchup</div>
-        </div>
 
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Fried Egg (2 Eggs)</span>
-                <span class="price">₹325</span>
+             <div class="menu-card" data-price="325" data-name="Fried Egg">
+                <div class="item-details">
+                    <div class="item-name">Fried Egg (2 Eggs)</div>
+                    <div class="item-desc">Sunny side up or both sides fried. With 2 slices of toast & butter.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="description">Choice: Sunny side up/both side fried. Accompanied by 2 slice of toasted bread and butter</div>
-        </div>
-
-        <h3 class="category-title">Indian Breakfast</h3>
-
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Puri with Bhaji</span>
-                <span class="price">₹275</span>
-            </div>
-            <div class="description">Home style potato and peas curry served with three pieces of puri</div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Chole Bhature</span>
-                <span class="price">₹275</span>
-            </div>
-            <div class="description">Delhi Street style chole served with 2 pieces of bhatura</div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Stuffed Tawa Paratha</span>
-                <span class="price">₹275</span>
-            </div>
-            <div class="description">Choose from: Potato, Paneer, Cauliflower. Served with curd and pickle</div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Dosa</span>
-                <span class="price">₹275</span>
-            </div>
-            <div class="description">Choose from Masala/Plain/Mysur/Ghee Served with Sambhar coconut & Tomato Chutney</div>
-        </div>
-
-        <div class="menu-item">
-            <div class="item-header">
-                <span>Uttapam</span>
-                <span class="price">₹225</span>
-            </div>
-            <div class="description">Choose from plain/masala served with sambhar coconut and tomato chutney</div>
         </div>
     </div>
 
-    <div class="location-section">
-        <h3>Places of Interest / Distance</h3>
-        <table>
-            <tr><td>Airport</td><td>06 Kms</td></tr>
+    <div id="indian" class="content-section">
+        <div class="section-header">Indian Specialties</div>
+
+        <div class="menu-grid">
+            <div class="menu-card" data-price="275" data-name="Puri Bhaji">
+                <div class="item-details">
+                    <div class="item-name">Puri with Bhaji</div>
+                    <div class="item-desc">Home style potato and peas curry served with 3 pieces of puri.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-card" data-price="275" data-name="Chole Bhature">
+                <div class="item-details">
+                    <div class="item-name">Chole Bhature</div>
+                    <div class="item-desc">Delhi street style chole served with 2 pieces of bhatura.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-card" data-price="275" data-name="Stuffed Paratha">
+                <div class="item-details">
+                    <div class="item-name">Stuffed Tawa Paratha</div>
+                    <div class="item-desc">Choice of Potato, Paneer, or Cauliflower. Served with curd and pickle.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-card" data-price="275" data-name="Dosa">
+                <div class="item-details">
+                    <div class="item-name">Dosa</div>
+                    <div class="item-desc">Masala, Plain, Mysur, or Ghee. Served with sambhar & chutneys.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-card" data-price="225" data-name="Uttapam">
+                <div class="item-details">
+                    <div class="item-name">Uttapam</div>
+                    <div class="item-desc">Plain or Masala. Served with sambhar & chutneys.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn" onclick="toggleItem(this)"><i class="fas fa-plus"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="places" class="content-section">
+        <div class="section-header">Nearby Attractions</div>
+        <p style="color:#666; font-size:0.9rem; margin-top:-10px;">Distances from PAM Premium Hotel</p>
+        
+        <table class="location-table">
+            <tr><td>Airport</td><td>06 Km</td></tr>
             <tr><td>Railway Station</td><td>800 Mt</td></tr>
-            <tr><td>Bullet Train Junction</td><td>900 Mt</td></tr>
+            <tr><td>Bullet Train Junc.</td><td>900 Mt</td></tr>
+            <tr><td>Bus Depot</td><td>900 Mt</td></tr>
             <tr><td>Sayaji Baug Zoo</td><td>900 Mt</td></tr>
-            <tr><td>Laxmi Vilas Palace</td><td>2.6 Kms</td></tr>
-            <tr><td>Inorbit Mall</td><td>3.2 Kms</td></tr>
-            <tr><td>Statue of Unity</td><td>90 Kms</td></tr>
+            <tr><td>Baroda Museum</td><td>850 Mt</td></tr>
+            <tr><td>Fatehsinh Museum</td><td>03 Km</td></tr>
+            <tr><td>Inorbit Mall</td><td>3.2 Km</td></tr>
+            <tr><td>Shiv Statue</td><td>2.2 Km</td></tr>
+            <tr><td>Laxmi Vilas Palace</td><td>2.6 Km</td></tr>
+            <tr><td>Champaner Fort</td><td>48 Km</td></tr>
+            <tr><td>Mata Temple</td><td>52.8 Km</td></tr>
+            <tr><td>Hathani Mata</td><td>79.2 Km</td></tr>
+            <tr><td>Statue of Unity</td><td>90 Km</td></tr>
         </table>
     </div>
 
-    <a href="tel:02652368888" class="btn-call">CALL RECEPTION TO ORDER</a>
+    <div id="billBar" class="bill-bar">
+        <div>
+            <div class="bill-info">Estimated Total</div>
+            <div class="bill-total" id="totalPrice">₹0</div>
+        </div>
+        <a href="tel:02652368888" class="call-btn">
+            <i class="fas fa-phone-alt"></i> Call to Order
+        </a>
+    </div>
 
-    <footer>
-        &copy; 2025 PAM Premium Hotel (Arab Ino)
-    </footer>
-</div>
+    <script>
+        let total = 0;
+        let count = 0;
 
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            // Show selected section
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Hide search if on places tab
+            document.querySelector('.search-container').style.display = (tabId === 'places') ? 'none' : 'block';
+        }
+
+        function toggleItem(btn) {
+            const card = btn.closest('.menu-card');
+            const price = parseInt(card.getAttribute('data-price'));
+            
+            if (card.classList.contains('in-cart')) {
+                // Remove item
+                card.classList.remove('in-cart');
+                total -= price;
+                count--;
+            } else {
+                // Add item
+                card.classList.add('in-cart');
+                total += price;
+                count++;
+            }
+
+            // Update UI
+            updateBill();
+        }
+
+        function updateBill() {
+            const billBar = document.getElementById('billBar');
+            const totalEl = document.getElementById('totalPrice');
+            
+            totalEl.innerText = '₹' + total;
+
+            if (count > 0) {
+                billBar.classList.add('visible');
+            } else {
+                billBar.classList.remove('visible');
+            }
+        }
+
+        function filterMenu() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.menu-card');
+
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const desc = card.querySelector('.item-desc').innerText.toLowerCase();
+                
+                if (name.includes(filter) || desc.includes(filter)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
