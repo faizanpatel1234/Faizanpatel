@@ -220,7 +220,41 @@
             transform: rotate(45deg); /* Turns plus to x */
         }
 
-        /* Location Table */
+        /* Places & Images */
+        .place-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .place-info {
+            padding: 15px;
+        }
+        
+        .place-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .place-dist {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Location Table (Simple) */
         .location-table {
             width: 100%;
             border-collapse: separate;
@@ -305,13 +339,6 @@
             transform: scale(0.98);
         }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-        }
-        
         .section-header {
             font-family: 'Playfair Display', serif;
             color: var(--secondary);
@@ -467,8 +494,41 @@
 
     <div id="places" class="content-section">
         <div class="section-header">Nearby Attractions</div>
-        <p style="color:#666; font-size:0.9rem; margin-top:-10px;">Distances from PAM Premium Hotel</p>
         
+        <div class="place-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/640px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" alt="Laxmi Vilas Palace" class="place-img">
+            <div class="place-info">
+                <div class="place-title">
+                    <span>Laxmi Vilas Palace</span>
+                    <span class="place-dist">2.6 Km</span>
+                </div>
+                <p class="item-desc" style="margin-top:5px">The magnificent residence of the royal family, four times the size of Buckingham Palace.</p>
+            </div>
+        </div>
+
+        <div class="place-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/640px-Sursagar_Lake_in_Vadodara.JPG" alt="Sursagar Lake" class="place-img">
+            <div class="place-info">
+                <div class="place-title">
+                    <span>Sursagar Shiv Statue</span>
+                    <span class="place-dist">2.2 Km</span>
+                </div>
+                <p class="item-desc" style="margin-top:5px">A beautiful lake in the middle of the city featuring a massive statue of Lord Shiva.</p>
+            </div>
+        </div>
+
+        <div class="place-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/600px-Statue_of_Unity.jpg" alt="Statue of Unity" class="place-img">
+            <div class="place-info">
+                <div class="place-title">
+                    <span>Statue of Unity</span>
+                    <span class="place-dist">90 Km</span>
+                </div>
+                <p class="item-desc" style="margin-top:5px">The world's tallest statue, dedicated to Sardar Vallabhbhai Patel.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top:20px; font-size:1rem; border-bottom:1px solid #ddd;">Other Locations</div>
         <table class="location-table">
             <tr><td>Airport</td><td>06 Km</td></tr>
             <tr><td>Railway Station</td><td>800 Mt</td></tr>
@@ -478,12 +538,9 @@
             <tr><td>Baroda Museum</td><td>850 Mt</td></tr>
             <tr><td>Fatehsinh Museum</td><td>03 Km</td></tr>
             <tr><td>Inorbit Mall</td><td>3.2 Km</td></tr>
-            <tr><td>Shiv Statue</td><td>2.2 Km</td></tr>
-            <tr><td>Laxmi Vilas Palace</td><td>2.6 Km</td></tr>
             <tr><td>Champaner Fort</td><td>48 Km</td></tr>
             <tr><td>Mata Temple</td><td>52.8 Km</td></tr>
             <tr><td>Hathani Mata</td><td>79.2 Km</td></tr>
-            <tr><td>Statue of Unity</td><td>90 Km</td></tr>
         </table>
     </div>
 
