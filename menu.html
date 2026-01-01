@@ -14,7 +14,6 @@
             --navy: #0a1420;
             --white: #ffffff;
             --text-dark: #222222;
-            --shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         body {
@@ -24,6 +23,7 @@
             margin: 0;
             padding: 0 0 100px 0; /* Space for bottom button */
             min-height: 100vh;
+            text-align: center; /* Global Center Alignment */
         }
 
         /* --- HEADER & DOWNLOAD SECTION --- */
@@ -31,7 +31,6 @@
             background-color: var(--navy);
             background-image: radial-gradient(circle at center, #162638 0%, #0a1420 100%);
             padding: 50px 20px 80px 20px;
-            text-align: center;
             position: relative;
         }
 
@@ -84,19 +83,18 @@
             background-color: var(--white);
             border-radius: 30px 30px 0 0;
             margin-top: -40px;
-            padding: 40px 25px;
+            padding: 40px 20px;
             box-shadow: 0 -20px 50px rgba(0,0,0,0.4);
             position: relative;
             z-index: 5;
-            /* Subtle Texture */
             background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
         }
 
         .price-frame {
             border: 1px solid var(--gold);
             padding: 15px;
-            text-align: center;
-            margin-bottom: 40px;
+            margin: 0 auto 40px auto; /* Centered Margin */
+            max-width: 300px;
             position: relative;
         }
         
@@ -107,7 +105,6 @@
             width: 10px;
             height: 10px;
             border: 1px solid var(--gold);
-            transition: all 0.3s;
         }
         .price-frame::before { top: -4px; left: -4px; border-right: none; border-bottom: none; }
         .price-frame::after { bottom: -4px; right: -4px; border-left: none; border-top: none; }
@@ -124,14 +121,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 40px 0 25px 0;
+            margin: 45px 0 25px 0;
         }
         
         .section-separator::before, .section-separator::after {
             content: "";
-            flex: 1;
+            width: 30px; /* Short lines for centered look */
             height: 1px;
-            background: linear-gradient(to right, transparent, #ddd, transparent);
+            background: var(--gold);
+            opacity: 0.5;
         }
 
         .section-title {
@@ -153,7 +151,6 @@
         }
 
         .subsection-header {
-            text-align: center;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -162,32 +159,35 @@
             margin: 20px 0 12px 0;
         }
 
-        /* --- ITEMS --- */
+        /* --- ITEMS (CENTERED) --- */
         .item {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* CENTER ALIGNMENT */
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed #f0f0f0;
+            padding: 6px 0;
+            border-bottom: 1px dashed #f5f5f5;
         }
         .item:last-child { border-bottom: none; }
 
-        .item-left {
+        .item-content {
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .dot {
             font-size: 8px;
-            margin-right: 12px;
+            margin-right: 10px;
             opacity: 0.8;
+            position: relative;
+            top: -1px;
         }
         .veg { color: #2ecc71; }
         .nonveg { color: #e74c3c; }
         .neutral { color: var(--navy); }
 
         .item-name {
-            font-size: 15px;
+            font-size: 16px;
             color: #444;
             font-weight: 400;
             letter-spacing: 0.5px;
@@ -224,22 +224,19 @@
 
         .book-btn:active { transform: scale(0.96); }
 
-        /* --- PRINT / SAVE PDF STYLES --- */
+        /* --- PRINT STYLES --- */
         @media print {
             .sticky-footer, .download-btn, .header-bg { display: none !important; }
             body { padding: 0; background: white; }
-            .menu-card { margin: 0; box-shadow: none; border-radius: 0; padding: 0; }
-            .item { break-inside: avoid; }
+            .menu-card { margin: 0; box-shadow: none; border-radius: 0; padding: 0; margin-top: 0; }
             
-            /* Add a simple print header */
             .menu-card::before {
                 content: "HOTEL PAM PREMIUM - JAN 1 FEAST";
                 display: block;
-                text-align: center;
                 font-family: 'Cinzel', serif;
                 font-size: 20px;
                 font-weight: bold;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
                 padding-top: 20px;
             }
         }
@@ -270,25 +267,25 @@
         <div class="section-separator">
             <div class="section-title">Beverages</div>
         </div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot neutral"></i><span class="item-name">Chilled Butter Milk</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot neutral"></i><span class="item-name">Signature Mocktail</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot neutral"></i><span class="item-name">Chilled Butter Milk</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot neutral"></i><span class="item-name">Signature Mocktail</span></div></div>
 
         <div class="section-separator">
             <div class="section-title">Soups</div>
         </div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Creamy Corn Chowdar Soup</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gosht Paya Shorba</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Creamy Corn Chowdar Soup</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gosht Paya Shorba</span></div></div>
 
         <div class="section-separator">
             <div class="section-title">Salad Bar</div>
         </div>
         <div class="subsection-header">Garden Fresh</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Green Garden Salad</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Balsamic Quinoa Berry Salad</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Oliver Caesar Salad</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Green Garden Salad</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Balsamic Quinoa Berry Salad</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Oliver Caesar Salad</span></div></div>
         
         <div class="subsection-header">Non-Veg</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Greek Chickpea Chicken Salad</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Greek Chickpea Chicken Salad</span></div></div>
 
         <div class="section-separator">
             <span class="diamond">♦</span>
@@ -297,25 +294,25 @@
         </div>
         
         <div class="subsection-header">Vegetarian</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Funghi Alla Trapanese</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Cheese Jalapeno Cigar</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Veg Dumplings in Oyster Sauce</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Paneer Kali Mirch Tikka</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Funghi Alla Trapanese</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Cheese Jalapeno Cigar</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Veg Dumplings in Oyster Sauce</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Paneer Kali Mirch Tikka</span></div></div>
 
         <div class="subsection-header">Non-Vegetarian</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Tangdi Kebab</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Amritsari Tandoori Jhinga</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">King Fish Fry</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Kache Keeme Ke Kebab</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Tangdi Kebab</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Amritsari Tandoori Jhinga</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">King Fish Fry</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Kache Keeme Ke Kebab</span></div></div>
 
         <div class="section-separator">
             <div class="section-title">Live Stations</div>
         </div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Mutton Keema with Pav</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Murgh Lukhnowi Biryani</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot neutral"></i><span class="item-name">Kathi Rolls (Veg & Non-Veg)</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Samosa with Ragda</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Pani Puri</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Mutton Keema with Pav</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Murgh Lukhnowi Biryani</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot neutral"></i><span class="item-name">Kathi Rolls (Veg & Non-Veg)</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Samosa with Ragda</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Pani Puri</span></div></div>
 
         <div class="section-separator">
             <span class="diamond">♦</span>
@@ -324,25 +321,25 @@
         </div>
         
         <div class="subsection-header">Indian Specialties</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Methi Chaman</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Sarson Ka Saag with Missi Roti</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Dal Makhani</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Kashmiri Veg Pulao</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Methi Chaman</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Sarson Ka Saag with Missi Roti</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Dal Makhani</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Kashmiri Veg Pulao</span></div></div>
 
         <div class="subsection-header">Global & Non-Veg</div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Baked Mac & Cheese</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Veg Manchurian Gravy</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gongura Mamsam</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Chicken Vindaloo</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Malabar Prawns Biryani</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Baked Mac & Cheese</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Veg Manchurian Gravy</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gongura Mamsam</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Chicken Vindaloo</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Malabar Prawns Biryani</span></div></div>
 
         <div class="section-separator">
             <div class="section-title">Desserts</div>
         </div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Hot Jalebi & Rabdi</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Gajar Ka Halwa</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Assorted Pastries</span></div></div>
-        <div class="item"><div class="item-left"><i class="fas fa-circle dot veg"></i><span class="item-name">Premium Ice-Cream</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Hot Jalebi & Rabdi</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Gajar Ka Halwa</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Assorted Pastries</span></div></div>
+        <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Premium Ice-Cream</span></div></div>
 
         <br><br>
         <div style="text-align: center; color: #999; font-size: 10px; text-transform:uppercase; letter-spacing:1px;">
