@@ -25,52 +25,82 @@
             min-height: 100vh;
         }
 
-        /* --- HEADER --- */
+        /* --- DESIGNER HEADER --- */
         .header-bg {
             background-color: var(--navy);
-            padding: 40px 20px 50px 20px;
+            /* Subtle Geometric Texture Overlay */
+            background-image: 
+                linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.8)),
+                url("https://www.transparenttextures.com/patterns/cubes.png");
+            padding: 60px 20px 80px 20px;
             text-align: center;
-            background-image: radial-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
+            position: relative;
         }
 
+        /* Gold Foil Text Effect */
         .brand-name {
             font-family: 'Great Vibes', cursive;
-            font-size: 55px;
-            color: var(--gold);
+            font-size: 65px;
             margin: 0;
             line-height: 1.1;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            /* Metallic Gradient */
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .hotel-name {
             font-family: 'Cinzel', serif;
-            font-size: 11px;
-            letter-spacing: 3px;
+            font-size: 10px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.7);
-            margin-top: 5px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 10px;
+            margin-bottom: 25px;
         }
 
-        .event-title {
+        .header-divider {
+            height: 1px;
+            width: 50px;
+            background: var(--gold);
+            margin: 0 auto 25px auto;
+            opacity: 0.6;
+        }
+
+        .event-badge {
             font-family: 'Cinzel', serif;
             color: #fff;
-            font-size: 18px;
-            margin-top: 20px;
-            border: 1px solid var(--gold);
+            font-size: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            background: rgba(255,255,255,0.05);
             display: inline-block;
-            padding: 8px 20px;
-            letter-spacing: 1px;
+            padding: 12px 30px;
+            letter-spacing: 2px;
+            backdrop-filter: blur(5px);
+            border-radius: 2px;
+        }
+
+        .year-sub {
+            display: block;
+            font-size: 12px;
+            color: var(--gold);
+            margin-top: 5px;
+            font-weight: 700;
         }
 
         /* --- MENU CARD --- */
         .menu-container {
             background-color: var(--white);
-            border-radius: 25px 25px 0 0;
-            margin-top: -30px;
-            padding: 30px 20px;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
+            border-radius: 30px 30px 0 0;
+            margin-top: -40px; /* Stronger overlap */
+            padding: 40px 20px;
+            box-shadow: 0 -15px 50px rgba(0,0,0,0.5);
             position: relative;
+            z-index: 5;
         }
 
         .price-section {
@@ -116,7 +146,7 @@
             height: 1px;
             background: var(--gold);
             z-index: 1;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .subsection-title {
@@ -164,7 +194,7 @@
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
             padding: 15px 20px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
             box-sizing: border-box;
@@ -192,6 +222,7 @@
             gap: 10px;
             box-shadow: 0 4px 15px rgba(10, 25, 47, 0.4);
             transition: transform 0.2s;
+            border: 1px solid var(--gold);
         }
 
         .book-btn:active {
@@ -204,7 +235,13 @@
     <div class="header-bg">
         <h1 class="brand-name">Arab Ino</h1>
         <div class="hotel-name">Hotel Pam Premium</div>
-        <div class="event-title">Jan 1 Grand Feast</div>
+        
+        <div class="header-divider"></div>
+
+        <div class="event-badge">
+            GRAND FEAST
+            <span class="year-sub">JAN 1 • 2026</span>
+        </div>
     </div>
 
     <div class="menu-container">
