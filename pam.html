@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PAM Premium Hotel</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #4E342E;     /* Dark Earthy Brown (from Logo) */
-            --accent: #C0CA33;      /* Lime Green Accents (from Logo) */
+            /* Colorful & Elegant Palette */
+            --primary: #00695C;     /* Emerald Teal */
+            --primary-dark: #004D40;
             --gold: #D4AF37;        /* Luxury Gold */
-            --bg: #F9F9F9;          
+            --gold-light: #F9F1D8;  
+            --bg: #FDFBF7;          /* Warm Cream Background */
             --white: #ffffff;
-            --text-dark: #2c2c2c;
+            --text-dark: #1A1A1A;
             --text-light: #666666;
-            --green: #2ecc71;       /* Veg Symbol */
-            --red: #e74c3c;         /* Non-Veg Symbol */
-            --shadow: 0 4px 15px rgba(0,0,0,0.06);
+            --green: #2E7D32;       /* Veg Symbol */
+            --red: #C62828;         /* Non-Veg Symbol */
+            --shadow: 0 8px 24px rgba(0, 105, 92, 0.08);
+            --gradient: linear-gradient(135deg, #00695C 0%, #004D40 100%);
         }
 
         * {
@@ -28,13 +31,13 @@
         }
 
         body {
-            font-family: 'Mulish', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             background-color: var(--bg);
             margin: 0;
             padding: 0;
             color: var(--text-dark);
-            padding-bottom: 90px;
-            padding-top: 70px;
+            padding-bottom: 100px;
+            padding-top: 80px;
         }
 
         /* --- STICKY HEADER --- */
@@ -44,20 +47,28 @@
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             z-index: 1000;
             padding: 15px 20px;
-            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            color: var(--primary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 0.5px;
             margin: 0;
         }
@@ -66,9 +77,22 @@
             font-size: 10px;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             font-weight: 700;
+            margin-top: 2px;
         }
+
+        .header-action {
+            width: 40px; height: 40px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .header-action:active { transform: scale(0.95); }
 
         /* --- BOTTOM NAVIGATION --- */
         .bottom-nav {
@@ -79,482 +103,539 @@
             background: var(--white);
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
-            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+            padding: 12px 0 20px; /* Extra padding for modern phones */
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
             z-index: 1000;
-            border-top: 1px solid #eee;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
         .nav-item {
             text-align: center;
-            color: #999;
-            font-size: 10px;
+            color: #ccc;
+            font-size: 11px;
             cursor: pointer;
             flex: 1;
-            transition: 0.2s;
+            transition: 0.3s;
+            position: relative;
         }
 
         .nav-item i {
-            font-size: 20px;
+            font-size: 22px;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            transition: 0.3s;
         }
 
-        .nav-item.active { color: var(--primary); }
+        .nav-item.active { color: var(--primary); font-weight: 600; }
+        .nav-item.active i { transform: translateY(-3px); color: var(--gold); }
+        .nav-item.active::after {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         /* --- CONTENT CONTAINERS --- */
         .tab-content {
             display: none;
-            padding: 20px;
+            padding: 15px 20px;
             max-width: 600px;
             margin: 0 auto;
-            animation: fadeIn 0.3s ease;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .tab-content.active { display: block; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
         /* --- HOME TAB --- */
-        .welcome-card {
-            background: var(--white);
-            border-radius: 20px;
+        .hero-card {
+            background: var(--gradient);
+            border-radius: 24px;
             padding: 40px 30px;
             text-align: center;
+            color: white;
             box-shadow: var(--shadow);
-            margin-top: 10px;
-            border-top: 5px solid var(--accent);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .big-logo {
+        /* Decorative Circle */
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .hero-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 38px;
-            color: var(--primary);
-            line-height: 1;
+            font-size: 42px;
             margin-bottom: 10px;
+            position: relative;
         }
 
-        .contact-row {
+        .hero-sub {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             display: flex;
             align-items: center;
-            background: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border: 1px solid #eee;
-            text-align: left;
+            transition: 0.2s;
+            border: 1px solid #f0f0f0;
         }
+        
+        .info-card:active { transform: scale(0.98); }
 
-        .contact-icon {
-            width: 40px; height: 40px;
-            background: rgba(192, 202, 51, 0.15);
-            color: #9E9D24;
-            border-radius: 50%;
+        .info-icon {
+            width: 45px; height: 45px;
+            background: var(--gold-light);
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            margin-right: 15px;
+            color: #967C2E;
             font-size: 18px;
+            margin-right: 15px;
             flex-shrink: 0;
         }
 
-        .contact-text { font-size: 13px; color: var(--text-dark); line-height: 1.4; }
+        .info-content div:first-child {
+            font-weight: 700; font-size: 14px; margin-bottom: 3px; color: var(--primary);
+        }
+        .info-content div:last-child {
+            font-size: 12px; color: var(--text-light); line-height: 1.4;
+        }
 
         /* --- MENU TAB --- */
-        .section-header {
+        .category-header {
             font-family: 'Playfair Display', serif;
-            font-size: 18px;
+            font-size: 22px;
             color: var(--primary);
-            margin: 30px 0 15px 0;
-            display: flex; align-items: center;
-            border-left: 3px solid var(--accent);
-            padding-left: 10px;
+            margin: 35px 0 20px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .category-header::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%; transform: translateY(-50%);
+            width: 4px; height: 24px;
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .menu-item {
             background: var(--white);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 16px;
-            margin-bottom: 12px;
-            box-shadow: var(--shadow);
-            display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid transparent;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            display: flex; justify-content: space-between; align-items: flex-start;
+            border: 1px solid rgba(0,0,0,0.03);
             transition: 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
         .menu-item.selected {
+            background: #F0FDF4;
             border-color: var(--primary);
-            background: #FDFBF7;
+        }
+        
+        .menu-item.selected::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--primary);
         }
 
-        .item-content { flex: 1; padding-right: 15px; }
+        .item-details { flex: 1; padding-right: 15px; }
 
-        .item-title {
-            font-weight: 700; font-size: 15px; margin-bottom: 4px;
-            display: flex; align-items: center; gap: 8px;
+        .item-name {
+            font-weight: 700; font-size: 16px; margin-bottom: 5px;
+            display: flex; align-items: center; gap: 8px; color: var(--text-dark);
         }
 
-        .item-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; }
+        .item-desc { font-size: 12px; color: #888; line-height: 1.5; margin-bottom: 8px; }
 
         .item-price {
-            display: inline-block; margin-top: 6px;
-            font-weight: 700; color: var(--primary); font-size: 14px;
+            font-weight: 700; color: var(--primary); font-size: 15px;
+            background: var(--gold-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
         }
 
         /* Indicators */
-        .dot { width: 12px; height: 12px; border: 1px solid; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
-        .veg { border-color: var(--green); } .veg::after { content:""; width:6px; height:6px; background:var(--green); border-radius:50%; }
-        .egg { border-color: var(--red); } .egg::after { content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:6px solid var(--red); }
+        .food-icon { width: 14px; height: 14px; border: 1px solid; display: flex; align-items: center; justify-content: center; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+        .veg { border-color: var(--green); } .veg::after { content:""; width:7px; height:7px; background:var(--green); border-radius:50%; }
+        .egg { border-color: var(--red); } .egg::after { content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:7px solid var(--red); }
 
         .add-btn {
-            width: 32px; height: 32px;
-            background: #f0f0f0; border-radius: 10px;
+            width: 38px; height: 38px;
+            background: #F5F5F5; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            color: #555; transition: 0.2s;
+            color: #AAA; transition: 0.2s; cursor: pointer;
         }
-        .menu-item.selected .add-btn { background: var(--primary); color: white; }
+        .menu-item.selected .add-btn { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(0, 105, 92, 0.3); }
 
         /* --- GUIDE TAB --- */
+        .guide-grid {
+            display: grid; grid-template-columns: 1fr; gap: 20px;
+        }
+
         .landmark-card {
             background: var(--white);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
         }
 
-        .img-wrapper { position: relative; height: 180px; background: #eee; }
-        .landmark-img { width: 100%; height: 100%; object-fit: cover; }
-
-        .dist-badge {
-            position: absolute; bottom: 10px; right: 10px;
+        .img-container { position: relative; height: 200px; background: #eee; }
+        .landmark-img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        
+        .dist-chip {
+            position: absolute; bottom: 15px; right: 15px;
             background: rgba(255,255,255,0.95);
             color: var(--primary);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px; font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px; font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 5px;
         }
 
-        .card-body { padding: 15px; }
-        .card-title { font-weight: 700; font-size: 16px; margin-bottom: 5px; color: var(--primary); }
-        .card-subtitle { font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+        .card-info { padding: 20px; }
+        .card-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 18px; margin-bottom: 5px; color: var(--primary-dark); }
+        .card-sub { font-size: 12px; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
 
-        /* --- FLOATING ORDER BAR --- */
-        .order-bar {
-            position: fixed; bottom: 70px; left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            width: 90%; max-width: 500px;
-            background: var(--primary);
+        /* --- ORDER BAR --- */
+        .order-float {
+            position: fixed; bottom: 90px; left: 20px; right: 20px;
+            background: var(--primary-dark);
             color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
+            padding: 15px 25px;
+            border-radius: 16px;
             display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            transition: 0.3s;
+            box-shadow: 0 15px 40px rgba(0, 77, 64, 0.3);
+            transform: translateY(150px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 900;
         }
-        .order-bar.show { transform: translateX(-50%) translateY(0); }
+        .order-float.show { transform: translateY(0); }
 
-        .call-btn {
-            background: var(--accent);
+        .total-label { font-size: 11px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+        .total-price { font-size: 20px; font-weight: 700; color: var(--gold); }
+        
+        .order-btn {
+            background: var(--white);
             color: var(--primary);
             text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 13px; font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-size: 14px; font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
         }
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <div>
+        <div class="brand-container">
             <div class="brand-name">PAM PREMIUM</div> <div class="brand-sub">Arab Ino</div>
         </div>
-        <a href="tel:02652368888" style="color:var(--primary); font-size:20px;"><i class="fas fa-phone-alt"></i></a>
+        <a href="tel:02652368888" class="header-action"><i class="fas fa-phone"></i></a>
     </header>
 
     <div id="home" class="tab-content active">
-        <div class="welcome-card">
-            <div class="big-logo">P<span style="color:var(--accent)">A</span>M</div>
-            <div style="font-size:12px; letter-spacing:4px; color:#999; margin-bottom:30px;">PREMIUM HOTEL</div>
-            
-            <div class="contact-row">
-                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="contact-text">Opp. Suraj Plaza, Sarod, Sayajigunj,<br>Vadodara, Gujarat 390 007</div>
-            </div>
-            
-            <div class="contact-row">
-                <div class="contact-icon"><i class="fas fa-globe"></i></div>
-                <div class="contact-text">www.hotel.pamhotelsindia.com</div>
-            </div>
+        <div class="hero-card">
+            <div class="hero-logo">P<span style="color:var(--gold)">A</span>M</div>
+            <div class="hero-sub">Premium Hotel & Resorts</div>
+            <div style="font-size: 14px; opacity: 0.9;">Luxury & Comfort in Vadodara</div>
+        </div>
 
-            <div class="contact-row" onclick="window.location.href='tel:02652368888'">
-                <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                <div class="contact-text" style="font-weight:bold; color:var(--primary);">Call Reception<br>0265-236 8888</div>
-            </div>
+        <div class="info-card" onclick="window.location.href='https://maps.google.com'">
+            <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+            <div class="info-content">
+                <div>Our Location</div>
+                <div>Opp. Suraj Plaza, Sarod, Sayajigunj,<br>Vadodara, Gujarat 390 007</div> </div>
+        </div>
+
+        <div class="info-card" onclick="window.location.href='tel:02652368888'">
+            <div class="info-icon"><i class="fas fa-headset"></i></div>
+            <div class="info-content">
+                <div>24/7 Reception</div>
+                <div>0265-236 8888</div> </div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon"><i class="fas fa-globe"></i></div>
+            <div class="info-content">
+                <div>Visit Website</div>
+                <div>www.hotel.pamhotelsindia.com</div> </div>
         </div>
     </div>
 
     <div id="menu" class="tab-content">
         
-        <div class="section-header">Breakfast & Eggs</div>
-
-        <div class="menu-item" onclick="toggleItem(this, 225)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Cereals with Milk</div>
-                <div class="item-desc">Corn/Choco Flakes/Museli. Hot or cold milk.</div>
-                <div class="item-price">₹225</div>
+        <div class="category-header">Breakfast Special</div>
+        <div class="menu-list">
+            <div class="menu-item" onclick="toggleItem(this, 225)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Cereals with Milk</div>
+                    <div class="item-desc">Corn/Choco Flakes/Museli. Hot or cold milk.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
+
+            <div class="menu-item" onclick="toggleItem(this, 300)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Toast & Preserves</div>
+                    <div class="item-desc">2 slices toasted bread with butter and marmalade.</div>
+                    <div class="item-price">₹300</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-item" onclick="toggleItem(this, 325)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon egg"></div> Masala Omelette</div>
+                    <div class="item-desc">2 Eggs. With potato and tomato.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
         </div>
 
-        <div class="menu-item" onclick="toggleItem(this, 300)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Toast & Preserves</div>
-                <div class="item-desc">2 slices toasted bread with butter and marmalade.</div>
-                <div class="item-price">₹300</div>
+        <div class="category-header">Indian Breakfast</div>
+        <div class="menu-list">
+            <div class="menu-item" onclick="toggleItem(this, 275)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Puri Bhaji</div>
+                    <div class="item-desc">Home style potato peas curry with 3 puri.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
+
+            <div class="menu-item" onclick="toggleItem(this, 275)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Chole Bhature</div>
+                    <div class="item-desc">Delhi street style chole with 2 bhatura.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-item" onclick="toggleItem(this, 275)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Stuffed Paratha</div>
+                    <div class="item-desc">Potato/Paneer/Cauliflower. With curd & pickle.</div>
+                    <div class="item-price">₹275</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
         </div>
 
-        <div class="menu-item" onclick="toggleItem(this, 325)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot egg"></div> Egg White Scrambled</div>
-                <div class="item-desc">4 Eggs White. Served with bread and butter.</div>
-                <div class="item-price">₹325</div>
+        <div class="category-header">Soups & Salads</div>
+        <div class="menu-list">
+            <div class="menu-item" onclick="toggleItem(this, 225)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Tomato Basil Soup</div>
+                    <div class="item-desc">Creamy soup of plum tomatoes. Served with croutons.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
+
+            <div class="menu-item" onclick="toggleItem(this, 225)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Manchow Soup</div>
+                    <div class="item-desc">Indo-chinese style with fried noodles.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
+
+             <div class="menu-item" onclick="toggleItem(this, 225)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Greek Salad</div>
+                    <div class="item-desc">Fresh veggies, garlic vinaigrette and feta.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
         </div>
 
-        <div class="menu-item" onclick="toggleItem(this, 325)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot egg"></div> Masala Omelette</div>
-                <div class="item-desc">2 Eggs. Accompanied by potato and tomato.</div>
-                <div class="item-price">₹325</div>
+        <div class="category-header">Tandoor & Starters</div>
+        <div class="menu-list">
+             <div class="menu-item" onclick="toggleItem(this, 425)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Paneer Tikka</div>
+                    <div class="item-desc">Angara/Malai/Achari. Chargrilled cottage cheese.</div>
+                    <div class="item-price">₹425</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
+
+            <div class="menu-item" onclick="toggleItem(this, 425)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon egg"></div> Murgh Malai Tikka</div>
+                    <div class="item-desc">Chicken in yogurt, cream and cheese.</div>
+                    <div class="item-price">₹425</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
+
+            <div class="menu-item" onclick="toggleItem(this, 225)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Honey Chilli Potato</div>
+                    <div class="item-desc">Crispy potatoes in sweet & spicy sauce.</div>
+                    <div class="item-price">₹225</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
+            </div>
         </div>
 
-        <div class="section-header">Indian Breakfast</div>
-
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Puri with Bhaji</div>
-                <div class="item-desc">Potato and peas curry served with 3 pieces of puri.</div>
-                <div class="item-price">₹275</div>
+        <div class="category-header">Mains & Global</div>
+        <div class="menu-list">
+             <div class="menu-item" onclick="toggleItem(this, 375)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Thai Curry (Veg)</div>
+                    <div class="item-desc">Red/Green/Yellow curry with coconut milk.</div>
+                    <div class="item-price">₹375</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
 
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Chole Bhature</div>
-                <div class="item-desc">Delhi street style chole served with 2 pieces of bhatura.</div>
-                <div class="item-price">₹275</div>
+            <div class="menu-item" onclick="toggleItem(this, 375)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Pasta Alfredo</div>
+                    <div class="item-desc">Creamy parmesan sauce. Served with garlic bread.</div>
+                    <div class="item-price">₹375</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
 
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Stuffed Paratha</div>
-                <div class="item-desc">Potato, Paneer, or Cauliflower. Served with curd.</div>
-                <div class="item-price">₹275</div>
+             <div class="menu-item" onclick="toggleItem(this, 325)">
+                <div class="item-details">
+                    <div class="item-name"><div class="food-icon veg"></div> Chilli Paneer Gravy</div>
+                    <div class="item-desc">Cottage cheese in spicy chinese sauce.</div>
+                    <div class="item-price">₹325</div>
+                </div>
+                <div class="add-btn"><i class="fas fa-plus"></i></div>
             </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Dosa</div>
-                <div class="item-desc">Masala/Plain/Mysur. With sambhar & chutney.</div>
-                <div class="item-price">₹275</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="section-header">All Day Dining (Sandwiches/Burgers)</div>
-
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Classic Veg Sandwich</div>
-                <div class="item-desc">Coleslaw/Chutney/Veg. Served with fries.</div>
-                <div class="item-price">₹275</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 375)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Club House Sandwich</div>
-                <div class="item-desc">Double layer with lettuce, veg and cheese. With fries.</div>
-                <div class="item-price">₹375</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 325)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Kathi Roll (Veg/Paneer)</div>
-                <div class="item-desc">Roomali roti stuffed with paneer and tandoori masala.</div>
-                <div class="item-price">₹325</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 375)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot egg"></div> Chicken Burger</div>
-                <div class="item-desc">Chicken patty burger with fries.</div>
-                <div class="item-price">₹375</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="section-header">Soups</div>
-
-        <div class="menu-item" onclick="toggleItem(this, 225)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Cream of Tomato Basil</div>
-                <div class="item-desc">Creamy soup of plum tomatoes.</div>
-                <div class="item-price">₹225</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-        
-        <div class="menu-item" onclick="toggleItem(this, 225)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Veg Manchow Soup</div>
-                <div class="item-desc">Indo-chinese style with fried noodles.</div>
-                <div class="item-price">₹225</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 275)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot egg"></div> Chicken Hot N Sour</div>
-                <div class="item-desc">Spicy Asian soup with chicken and egg drops.</div>
-                <div class="item-price">₹275</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="section-header">Main Course & Starters</div>
-
-        <div class="menu-item" onclick="toggleItem(this, 325)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Chilli Paneer Gravy</div>
-                <div class="item-desc">Fried cottage cheese in sweet and spicy sauce.</div>
-                <div class="item-price">₹325</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 375)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Pasta Alfredo</div>
-                <div class="item-desc">Penne/Fusilli in creamy parmesan sauce with garlic bread.</div>
-                <div class="item-price">₹375</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-item" onclick="toggleItem(this, 375)">
-            <div class="item-content">
-                <div class="item-title"><div class="dot veg"></div> Thai Curry (Veg)</div>
-                <div class="item-desc">Red/Green/Yellow curry with coconut milk.</div>
-                <div class="item-price">₹375</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
     </div>
 
     <div id="guide" class="tab-content">
-        
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/800px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">2.6 Km</div>
+        <div class="guide-grid">
+            
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/800px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 2.6 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Laxmi Vilas Palace</div>
+                    <div class="card-sub">Royal Residence</div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-title">Laxmi Vilas Palace</div>
-                <div class="card-subtitle">Royal Residence</div>
-            </div>
-        </div>
 
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/800px-Sursagar_Lake_in_Vadodara.JPG" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">2.2 Km</div>
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/800px-Sursagar_Lake_in_Vadodara.JPG" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 2.2 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Sursagar Shiv Statue</div>
+                    <div class="card-sub">Lake & Temple</div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-title">Sursagar Shiv Statue</div>
-                <div class="card-subtitle">Lake & Temple</div>
-            </div>
-        </div>
 
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">90 Km</div>
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 90 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Statue of Unity</div>
+                    <div class="card-sub">World's Tallest Statue</div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-title">Statue of Unity</div>
-                <div class="card-subtitle">World's Tallest Statue</div>
-            </div>
-        </div>
 
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Champaner-Pavagadh_Archaeological_Park.jpg/800px-Champaner-Pavagadh_Archaeological_Park.jpg" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">52.8 Km</div>
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Champaner-Pavagadh_Archaeological_Park.jpg/800px-Champaner-Pavagadh_Archaeological_Park.jpg" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 52.8 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Mata Temple, Pavagadh</div>
+                    <div class="card-sub">Pilgrimage</div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-title">Mata Temple, Pavagadh</div>
-                <div class="card-subtitle">Pilgrimage</div>
-            </div>
-        </div>
 
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">06 Km</div>
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 06 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Vadodara Airport</div>
+                    <div class="card-sub">Transport</div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-title">Vadodara Airport</div>
-                <div class="card-subtitle">Transport</div>
-            </div>
-        </div>
 
-        <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">800 Mt</div>
-            </div>
-            <div class="card-body">
-                <div class="card-title">Railway Station</div>
-                <div class="card-subtitle">Central Station</div>
-            </div>
-        </div>
-
-         <div class="landmark-card">
-            <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3d9f?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
-                <div class="dist-badge">3.2 Km</div>
-            </div>
-            <div class="card-body">
-                <div class="card-title">Inorbit Mall</div>
-                <div class="card-subtitle">Shopping</div>
+            <div class="landmark-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3d9f?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
+                    <div class="dist-chip"><i class="fas fa-location-arrow"></i> 3.2 Km</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-title">Inorbit Mall</div>
+                    <div class="card-sub">Shopping</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="order-bar" id="orderBar">
+    <div class="order-float" id="orderBar">
         <div>
-            <div style="font-size:10px; opacity:0.8;">ESTIMATED TOTAL</div>
-            <div style="font-size:18px; font-weight:700; color:var(--accent);" id="totalPrice">₹0</div>
+            <div class="total-label">Total Estimate</div>
+            <div class="total-price" id="totalDisplay">₹0</div>
         </div>
-        <a href="tel:02652368888" class="call-btn">
-            Place Order <i class="fas fa-chevron-right" style="font-size:10px; margin-left:5px;"></i>
+        <a href="tel:02652368888" class="order-btn">
+            Place Order <i class="fas fa-arrow-right"></i>
         </a>
     </div>
 
@@ -571,8 +652,7 @@
     </nav>
 
     <script>
-        let total = 0;
-
+        // Tab Logic
         function switchTab(tabId, navEl) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -582,6 +662,8 @@
             window.scrollTo(0,0);
         }
 
+        // Cart Logic
+        let total = 0;
         function toggleItem(card, price) {
             const btn = card.querySelector('.add-btn');
             const icon = btn.querySelector('i');
@@ -599,13 +681,13 @@
         }
 
         function updateBill() {
-            document.getElementById('totalPrice').innerText = "₹" + total;
+            document.getElementById('totalDisplay').innerText = "₹" + total;
             const bar = document.getElementById('orderBar');
             if(total > 0) bar.classList.add('show');
             else bar.classList.remove('show');
         }
 
-        // Auto-Replace broken images with a placeholder
+        // Image Fix
         function imgFix(img) {
             img.onerror = "";
             img.src = "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=800&q=80";
