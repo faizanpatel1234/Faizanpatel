@@ -63,7 +63,7 @@
         }
 
         .top-banner {
-            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* New Fresh Color for Jan 1 */
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
             color: white;
             padding: 30px 15px;
             text-align: center;
@@ -71,19 +71,21 @@
             border-bottom: 3px solid #d4af37;
         }
 
-        /* --- GLOW ANIMATION --- */
-        @keyframes goldenGlow {
-            0% { text-shadow: 0 0 5px #b88a00; transform: scale(1); }
-            50% { text-shadow: 0 0 20px #ffd700, 0 0 40px #fff; transform: scale(1.05); }
-            100% { text-shadow: 0 0 5px #b88a00; transform: scale(1); }
+        /* --- FADE IN/OUT ANIMATION (BREATHING EFFECT) --- */
+        @keyframes fadeBreathing {
+            0% { opacity: 0.6; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(0.98); }
         }
 
         .gold-text {
+            /* Metallic Gold Gradient */
             background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: goldenGlow 2s ease-in-out infinite alternate;
+            /* New Fade Animation */
+            animation: fadeBreathing 3s ease-in-out infinite;
         }
 
         .brand-name {
@@ -146,7 +148,7 @@
         }
 
         .section-title {
-            color: #2c5364; /* Matching new header color */
+            color: #2c5364;
             font-family: 'Cinzel', serif;
             font-size: 22px;
             text-align: center;
