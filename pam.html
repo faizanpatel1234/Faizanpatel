@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PAM Premium Hotel</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #2C3E50;    /* Dark Slate */
-            --accent: #D4AF37;     /* Gold */
-            --bg: #F4F6F8;         /* Light Grey Background */
-            --card-bg: #FFFFFF;
-            --green: #27ae60;      /* Veg Color */
-            --red: #c0392b;        /* Non-Veg Color */
+            --primary: #2C3E50;
+            --accent: #D4AF37; /* Gold */
+            --bg: #F4F6F8;
+            --white: #ffffff;
+            --green: #27ae60;
+            --red: #c0392b;
         }
 
         body {
@@ -24,485 +24,411 @@
             margin: 0;
             padding: 0;
             color: #333;
-            -webkit-font-smoothing: antialiased;
-            padding-bottom: 100px; /* Space for bottom bar */
+            padding-bottom: 100px;
         }
 
-        /* --- Header Design --- */
+        /* --- Header --- */
         .app-header {
-            background: linear-gradient(135deg, #2C3E50 0%, #000000 100%);
+            background: #2C3E50;
             color: white;
-            padding: 25px 20px 40px 20px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            position: relative;
-            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
-        .hotel-name {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin: 0;
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
             color: var(--accent);
+            letter-spacing: 1px;
+            margin: 0;
         }
+        
+        .header-sub { font-size: 12px; opacity: 0.8; letter-spacing: 2px; text-transform: uppercase; }
 
-        .hotel-sub {
-            font-size: 14px;
-            opacity: 0.8;
-            font-weight: 300;
-            margin-top: 5px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* --- Tab Navigation --- */
-        .nav-container {
+        /* --- Navigation --- */
+        .nav-bar {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: -25px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 20;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .nav-pill {
-            background: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border: none;
-            transition: transform 0.2s, background 0.2s;
-            cursor: pointer;
-            flex: 1;
-            text-align: center;
-            max-width: 130px;
-        }
-
-        .nav-pill.active {
-            background: var(--accent);
+        .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* --- Content Layout --- */
-        .tab-content {
-            display: none;
-            padding: 25px 15px;
-            animation: fadeIn 0.4s ease;
+        .nav-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            font-weight: bold;
         }
+
+        /* --- Sections --- */
+        .tab-content { display: none; padding: 20px; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .section-title i { color: var(--accent); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- Menu Cards --- */
+        /* --- HOME TAB (Cover Page) --- */
+        .home-cover {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 10px;
+            border: 1px solid #eee;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .logo-accent { color: var(--accent); }
+        
+        .cover-subtitle {
+            font-size: 16px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .cover-details p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .welcome-badge {
+            display: inline-block;
+            background: #FFF8E1;
+            color: #F57F17;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* --- MENU ITEMS --- */
         .menu-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 16px;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
             margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
             border: 1px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .menu-card.selected {
-            border-color: var(--accent);
-            background: #FFFCF2;
-        }
-
-        .item-left { flex: 1; padding-right: 15px; }
-
-        .item-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 5px;
-        }
-
-        /* Veg/Non-Veg Indicators */
-        .food-mark {
-            width: 14px;
-            height: 14px;
-            border: 1px solid;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 3px;
-            flex-shrink: 0;
-        }
-        .mark-veg { border-color: var(--green); }
-        .mark-veg::after { content: ""; width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
-        
-        .mark-egg { border-color: var(--red); }
-        .mark-egg::after { content: ""; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid var(--red); }
-
-        .item-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: #2D3436;
-            line-height: 1.3;
-        }
-
-        .item-desc {
-            font-size: 12px;
-            color: #636e72;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        .item-price {
-            font-size: 15px;
-            font-weight: 700;
-            color: #2D3436;
-        }
-
-        /* Add Button */
-        .btn-add {
-            width: 35px;
-            height: 35px;
-            background: #F0F2F5;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 14px;
-            cursor: pointer;
             transition: 0.2s;
         }
 
-        .menu-card.selected .btn-add {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        .menu-card.selected { border-color: var(--accent); background: #FFFCF2; }
+
+        .item-info { flex: 1; }
+        .item-name { font-weight: 600; color: var(--primary); font-size: 16px; }
+        .item-desc { font-size: 12px; color: #888; margin-top: 4px; }
+        .item-price { color: var(--primary); font-weight: bold; margin-top: 5px; }
+
+        .add-btn {
+            width: 32px; height: 32px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #555;
+        }
+        .menu-card.selected .add-btn { background: var(--accent); color: white; }
+
+        /* Indicators */
+        .veg-icon { color: var(--green); margin-right: 5px; font-size: 10px; border: 1px solid var(--green); padding: 1px 3px; border-radius: 2px; }
+        .egg-icon { color: var(--red); margin-right: 5px; font-size: 10px; border: 1px solid var(--red); padding: 1px 3px; border-radius: 2px; }
+
+        /* --- ATTRACTIONS (All Cards) --- */
+        .places-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
-        /* --- Attractions Design (Text Only) --- */
         .landmark-card {
             background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             position: relative;
-            border-left: 4px solid var(--accent);
         }
 
-        .landmark-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
-            padding-right: 60px; /* Space for badge */
+        .landmark-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
         }
 
-        .landmark-badge {
+        .landmark-content { padding: 15px; }
+        
+        .landmark-title { font-weight: bold; font-size: 16px; color: var(--primary); }
+        .landmark-meta { font-size: 13px; color: #666; margin-top: 5px; display: flex; align-items: center; gap: 5px; }
+        
+        .dist-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #F0F2F5;
-            color: var(--primary);
+            top: 10px; right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: var(--accent);
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 700;
-            border: 1px solid #ddd;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
         }
 
-        /* Simple Distance List */
-        .distance-list {
-            background: white;
-            border-radius: 16px;
-            padding: 0 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .distance-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-        .distance-item:last-child { border-bottom: none; }
-        .place-label { font-weight: 500; color: #555; }
-        .place-val { font-weight: 700; color: var(--primary); }
-
-        /* --- Floating Bill Bar --- */
+        /* --- BILL BAR --- */
         .bill-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(44, 62, 80, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 25px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            transform: translateY(150%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed; bottom: 20px; left: 20px; right: 20px;
+            background: var(--primary); color: white;
+            padding: 15px 25px; border-radius: 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transform: translateY(150%); transition: 0.3s;
             z-index: 100;
         }
-
         .bill-bar.visible { transform: translateY(0); }
+        .order-btn { background: var(--accent); color: var(--primary); padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; }
 
-        .total-label { font-size: 12px; opacity: 0.7; }
-        .total-amount { font-size: 20px; font-weight: 700; color: var(--accent); }
-        
-        .btn-order {
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <h1 class="hotel-name">PAM PREMIUM</h1>
-        <div class="hotel-sub">Arab Ino | Hotel & Resorts</div>
+        <h1 class="header-title">PAM PREMIUM</h1>
+        <div class="header-sub">Arab Ino | Vadodara</div>
+        
+        <div class="nav-bar">
+            <div class="nav-btn active" onclick="switchTab('home')">Home</div>
+            <div class="nav-btn" onclick="switchTab('menu')">Menu</div>
+            <div class="nav-btn" onclick="switchTab('guide')">Guide</div>
+        </div>
     </header>
 
-    <div class="nav-container">
-        <button class="nav-pill active" onclick="switchTab('menu')">Menu</button>
-        <button class="nav-pill" onclick="switchTab('places')">Attractions</button>
+    <div id="home" class="tab-content active">
+        <div class="home-cover">
+            <div class="welcome-badge">WELCOME</div>
+            <div class="logo-text">P<span class="logo-accent">A</span>M</div>
+            <div class="logo-text" style="font-size: 24px;">Premium</div>
+            <div class="cover-subtitle">Hotel & Resorts</div>
+            <hr style="width: 50px; border: 2px solid var(--accent); margin: 20px auto;">
+            
+            <h3 style="margin-bottom:5px; color:#333;">Arab Ino</h3>
+            <p style="font-size:13px; color:#888; margin-top:0;">Fine Dining Experience</p>
+
+            <div class="cover-details" style="margin-top: 30px; text-align: left; background: #f9f9f9; padding: 20px; border-radius: 10px;">
+                [span_0](start_span)<p><i class="fas fa-map-marker-alt" style="color:var(--accent); width:20px;"></i> Opp. Suraj Plaza, Sayajigunj, Vadodara[span_0](end_span)</p>
+                [span_1](start_span)<p><i class="fas fa-phone" style="color:var(--accent); width:20px;"></i> 0265-236 8888[span_1](end_span)</p>
+                [span_2](start_span)<p><i class="fas fa-globe" style="color:var(--accent); width:20px;"></i> www.hotel.pamhotelsindia.com[span_2](end_span)</p>
+            </div>
+        </div>
     </div>
 
-    <div id="menu" class="tab-content active">
-        
-        <div class="section-title"><i class="fas fa-coffee"></i> Breakfast & Eggs</div>
+    <div id="menu" class="tab-content">
+        <h3 style="color:var(--primary);">Breakfast & Eggs</h3>
         
         <div class="menu-card" onclick="toggleItem(this, 225)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Cereals with Milk</div>
-                </div>
-                <div class="item-desc">Choice of Corn Flakes/Choco Flakes/Museli. Hot or cold milk.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Cereals with Milk</div>
+                <div class="item-desc">Corn/Choco Flakes/Museli. Hot or Cold milk.</div>
                 <div class="item-price">₹225</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 300)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Toast & Preserves</div>
-                </div>
-                <div class="item-desc">2 slices toasted bread with butter and marmalade.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Toast & Preserves</div>
+                <div class="item-desc">2 slice toasted bread, butter, marmalade.</div>
                 <div class="item-price">₹300</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-egg"></div>
-                    <div class="item-name">Egg White Scrambled</div>
-                </div>
-                <div class="item-desc">4 Eggs White. Served with bread and butter.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-caret-up egg-icon"></i> Egg White Scrambled</div>
+                <div class="item-desc">4 Eggs White. Served with bread & butter.</div>
                 <div class="item-price">₹325</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-egg"></div>
-                    <div class="item-name">Masala Omelette</div>
-                </div>
-                <div class="item-desc">2 Eggs. Accompanied by potato and tomato.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-caret-up egg-icon"></i> Masala Omelette</div>
+                <div class="item-desc">2 Eggs. With potato and tomato.</div>
                 <div class="item-price">₹325</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-egg"></div>
-                    <div class="item-name">Fried Egg</div>
-                </div>
-                <div class="item-desc">Sunny side up or both side fried. With toast.</div>
-                <div class="item-price">₹325</div>
-            </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="section-title" style="margin-top:30px;"><i class="fas fa-utensils"></i> Indian Specialties</div>
+        <h3 style="color:var(--primary); margin-top:30px;">Indian Breakfast</h3>
 
         <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Puri with Bhaji</div>
-                </div>
-                <div class="item-desc">Home style potato peas curry with 3 puri.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Puri with Bhaji</div>
+                <div class="item-desc">Potato peas curry with 3 puri.</div>
                 <div class="item-price">₹275</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Chole Bhature</div>
-                </div>
-                <div class="item-desc">Delhi street style chole with 2 bhatura.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Chole Bhature</div>
+                <div class="item-desc">Delhi style chole with 2 bhatura.</div>
                 <div class="item-price">₹275</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Stuffed Paratha</div>
-                </div>
-                <div class="item-desc">Potato, Paneer, or Cauliflower. Served with curd.</div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Stuffed Paratha</div>
+                <div class="item-desc">Potato/Paneer/Cauliflower. With curd.</div>
                 <div class="item-price">₹275</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
         <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Dosa</div>
-                </div>
+            <div class="item-info">
+                <div class="item-name"><i class="fas fa-circle veg-icon"></i> Dosa</div>
                 <div class="item-desc">Masala/Plain/Mysur. With sambhar & chutney.</div>
                 <div class="item-price">₹275</div>
             </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
-        </div>
-
-        <div class="menu-card" onclick="toggleItem(this, 225)">
-            <div class="item-left">
-                <div class="item-header">
-                    <div class="food-mark mark-veg"></div>
-                    <div class="item-name">Uttapam</div>
-                </div>
-                <div class="item-desc">Plain or Masala. With sambhar & chutney.</div>
-                <div class="item-price">₹225</div>
-            </div>
-            <div class="btn-add"><i class="fas fa-plus"></i></div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
     </div>
 
-    <div id="places" class="tab-content">
-        <div class="section-title"><i class="fas fa-map-marked-alt"></i> Top Landmarks</div>
+    <div id="guide" class="tab-content">
+        <div class="places-grid">
+            
+            <div class="landmark-card">
+                <span class="dist-badge">2.6 Km</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/800px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Laxmi Vilas Palace</div>
+                    <div class="landmark-meta"><i class="fas fa-landmark"></i> Royal Palace</div>
+                </div>
+            </div>
 
-        <div class="landmark-card">
-            <div class="landmark-name">Laxmi Vilas Palace</div>
-            <div class="landmark-badge">2.6 Km</div>
-            <div class="item-desc">The magnificent residence of the royal family, four times the size of Buckingham Palace.</div>
-        </div>
+            <div class="landmark-card">
+                <span class="dist-badge">2.2 Km</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/800px-Sursagar_Lake_in_Vadodara.JPG" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Sursagar Shiv Statue</div>
+                    <div class="landmark-meta"><i class="fas fa-water"></i> Lake & Statue</div>
+                </div>
+            </div>
 
-        <div class="landmark-card">
-            <div class="landmark-name">Sursagar Shiv Statue</div>
-            <div class="landmark-badge">2.2 Km</div>
-            <div class="item-desc">Famous lake in the middle of the city featuring a massive statue of Lord Shiva.</div>
-        </div>
+            <div class="landmark-card">
+                <span class="dist-badge">90 Km</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Statue of Unity</div>
+                    <div class="landmark-meta"><i class="fas fa-monument"></i> World's Tallest Statue</div>
+                </div>
+            </div>
 
-        <div class="landmark-card">
-            <div class="landmark-name">Statue of Unity</div>
-            <div class="landmark-badge">90 Km</div>
-            <div class="item-desc">The world's tallest statue, dedicated to Sardar Vallabhbhai Patel.</div>
-        </div>
+            <div class="landmark-card">
+                <span class="dist-badge">06 Km</span>
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Vadodara Airport</div>
+                    <div class="landmark-meta"><i class="fas fa-plane"></i> Transport</div>
+                </div>
+            </div>
 
-        <div class="section-title" style="margin-top:30px;"><i class="fas fa-location-arrow"></i> Distance Guide</div>
-        <div class="distance-list">
-            <div class="distance-item">
-                <span class="place-label">Airport</span>
-                <span class="place-val">06 Km</span>
+            <div class="landmark-card">
+                <span class="dist-badge">800 Mt</span>
+                <img src="https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Railway Station</div>
+                    <div class="landmark-meta"><i class="fas fa-train"></i> Central Station</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">Railway Station</span>
-                [span_0](start_span)<span class="place-val">800 Mt[span_0](end_span)</span>
+
+            <div class="landmark-card">
+                <span class="dist-badge">900 Mt</span>
+                <img src="https://images.unsplash.com/photo-1557161183-5c5f877f3346?auto=format&fit=crop&w=800&q=80" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Bullet Train Junction</div>
+                    <div class="landmark-meta"><i class="fas fa-bolt"></i> High Speed Rail</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">Bullet Train Junction</span>
-                [span_1](start_span)<span class="place-val">900 Mt[span_1](end_span)</span>
+
+            <div class="landmark-card">
+                <span class="dist-badge">900 Mt</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Baroda_Museum_%26_Picture_Gallery.jpg/800px-Baroda_Museum_%26_Picture_Gallery.jpg" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Sayaji Baug Zoo & Museum</div>
+                    <div class="landmark-meta"><i class="fas fa-paw"></i> Zoo & Park</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">GSRCT Bus Depot</span>
-                [span_2](start_span)<span class="place-val">900 Mt[span_2](end_span)</span>
+
+            <div class="landmark-card">
+                <span class="dist-badge">3.2 Km</span>
+                <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3d9f?auto=format&fit=crop&w=800&q=80" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Inorbit Mall</div>
+                    <div class="landmark-meta"><i class="fas fa-shopping-bag"></i> Shopping & Cinema</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">Sayaji Baug Zoo</span>
-                [span_3](start_span)<span class="place-val">900 Mt[span_3](end_span)</span>
+
+            <div class="landmark-card">
+                <span class="dist-badge">48 Km</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Champaner-Pavagadh_Archaeological_Park.jpg/800px-Champaner-Pavagadh_Archaeological_Park.jpg" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Champaner Fort (Pavagadh)</div>
+                    <div class="landmark-meta"><i class="fas fa-archway"></i> UNESCO Heritage</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">Baroda Museum</span>
-                [span_4](start_span)<span class="place-val">850 Mt[span_4](end_span)</span>
+             
+             <div class="landmark-card">
+                <span class="dist-badge">52.8 Km</span>
+                <img src="https://images.unsplash.com/photo-1563804808386-7a760c042456?auto=format&fit=crop&w=800&q=80" class="landmark-img">
+                <div class="landmark-content">
+                    <div class="landmark-title">Mata Temple (Pavagadh)</div>
+                    <div class="landmark-meta"><i class="fas fa-gopuram"></i> Pilgrimage</div>
+                </div>
             </div>
-            <div class="distance-item">
-                <span class="place-label">Maharaja Fatehsinh Museum</span>
-                [span_5](start_span)<span class="place-val">03 Km[span_5](end_span)</span>
-            </div>
-            <div class="distance-item">
-                <span class="place-label">Inorbit Mall</span>
-                [span_6](start_span)<span class="place-val">3.2 Km[span_6](end_span)</span>
-            </div>
-            <div class="distance-item">
-                <span class="place-label">Champaner Fort, Pavagadh</span>
-                [span_7](start_span)<span class="place-val">48 Km[span_7](end_span)</span>
-            </div>
-            <div class="distance-item">
-                <span class="place-label">Mata Temple, Pavagadh</span>
-                [span_8](start_span)<span class="place-val">52.8 Km[span_8](end_span)</span>
-            </div>
-            <div class="distance-item">
-                <span class="place-label">Hathani Mata</span>
-                [span_9](start_span)<span class="place-val">79.2 Km[span_9](end_span)</span>
-            </div>
+
         </div>
     </div>
 
     <div class="bill-bar" id="billBar">
         <div>
-            <div class="total-label">Total Estimate</div>
-            <div class="total-amount" id="displayTotal">₹0</div>
+            <div style="font-size:12px; opacity:0.8;">Total Estimate</div>
+            <div id="totalPrice" style="font-size:20px; font-weight:bold; color:var(--accent);">₹0</div>
         </div>
-        <a href="tel:02652368888" class="btn-order">
+        <a href="tel:02652368888" class="order-btn">
             <i class="fas fa-phone-alt"></i> Place Order
         </a>
     </div>
@@ -511,46 +437,48 @@
         let total = 0;
 
         function switchTab(tabId) {
-            // Content
+            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // Remove active btn
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            // Show new tab
             document.getElementById(tabId).classList.add('active');
             
-            // Buttons
-            document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
-            event.target.classList.add('active');
+            // Highlight btn (find the button that called this)
+            // Since we can't easily pass 'this', we find by text content or index.
+            // Simple approach: manually highlight based on ID
+            const btns = document.querySelectorAll('.nav-btn');
+            if(tabId === 'home') btns[0].classList.add('active');
+            if(tabId === 'menu') btns[1].classList.add('active');
+            if(tabId === 'guide') btns[2].classList.add('active');
             
             window.scrollTo(0,0);
         }
 
         function toggleItem(card, price) {
-            const btnIcon = card.querySelector('.btn-add i');
+            const btn = card.querySelector('.add-btn');
+            const icon = btn.querySelector('i');
             
             if (card.classList.contains('selected')) {
                 // Remove
                 card.classList.remove('selected');
                 total -= price;
-                btnIcon.classList.remove('fa-check');
-                btnIcon.classList.add('fa-plus');
+                icon.className = 'fas fa-plus';
             } else {
                 // Add
                 card.classList.add('selected');
                 total += price;
-                btnIcon.classList.remove('fa-plus');
-                btnIcon.classList.add('fa-check');
+                icon.className = 'fas fa-check';
             }
-
-            updateTotal();
+            updateBill();
         }
 
-        function updateTotal() {
-            document.getElementById('displayTotal').innerText = "₹" + total;
+        function updateBill() {
+            document.getElementById('totalPrice').innerText = "₹" + total;
             const bar = document.getElementById('billBar');
-            
-            if (total > 0) {
-                bar.classList.add('visible');
-            } else {
-                bar.classList.remove('visible');
-            }
+            if (total > 0) bar.classList.add('visible');
+            else bar.classList.remove('visible');
         }
     </script>
 </body>
