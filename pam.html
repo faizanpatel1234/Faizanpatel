@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PAM Premium Hotel</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #2C3E50;    /* Dark Blue-Grey */
-            --accent: #D4AF37;     /* Luxury Gold */
-            --bg: #F8F9FA;         /* Light Grey Background */
+            --primary: #4E342E;     /* Dark Earthy Brown (from Logo) */
+            --accent: #C0CA33;      /* Lime Green Accents (from Logo) */
+            --gold: #D4AF37;        /* Luxury Gold */
+            --bg: #F9F9F9;          
             --white: #ffffff;
-            --green: #27ae60;      /* Veg Indicator */
-            --red: #c0392b;        /* Non-Veg/Egg Indicator */
+            --text-dark: #2c2c2c;
+            --text-light: #666666;
+            --green: #2ecc71;       /* Veg Symbol */
+            --red: #e74c3c;         /* Non-Veg Symbol */
+            --shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         * {
@@ -23,557 +27,570 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Mulish', sans-serif;
             background-color: var(--bg);
             margin: 0;
             padding: 0;
-            color: #333;
-            padding-bottom: 100px; /* Space for bill bar */
+            color: var(--text-dark);
+            padding-bottom: 90px;
+            padding-top: 70px;
         }
 
-        /* --- Header Section --- */
+        /* --- STICKY HEADER --- */
         .app-header {
-            background: #2C3E50;
-            color: white;
-            padding: 20px 15px 15px;
-            text-align: center;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 50;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .header-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            color: var(--accent);
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-        
-        .header-sub {
-            font-size: 11px;
-            opacity: 0.8;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        /* --- Navigation Tabs --- */
-        .nav-bar {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .nav-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-btn.active {
-            background: var(--accent);
-            color: var(--primary);
-            border-color: var(--accent);
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        /* --- Content Containers --- */
-        .tab-content {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 0.4s ease-out;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- HOME TAB --- */
-        .home-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-top: 10px;
-        }
-
-        .brand-large {
-            font-family: 'Playfair Display', serif;
-            font-size: 38px;
-            color: var(--primary);
-            line-height: 1.1;
-            margin-bottom: 5px;
-        }
-        .brand-accent { color: var(--accent); }
-
-        .brand-sub {
-            font-size: 14px;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-        }
-
-        .info-box {
-            background: #F8F9FA;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            color: #555;
-            line-height: 1.5;
-        }
-        .info-row:last-child { margin-bottom: 0; }
-        .info-icon { color: var(--accent); width: 15px; margin-top: 2px; }
-
-        /* --- MENU TAB --- */
-        .category-title {
-            color: var(--primary);
-            font-weight: 700;
-            margin: 10px 0 15px;
-            font-size: 18px;
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
-        }
-
-        .menu-card {
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 12px;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 1px 10px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid transparent;
-            transition: all 0.2s;
         }
 
-        .menu-card.selected {
-            border-color: var(--accent);
-            background: #FFFDF5;
-        }
-
-        .item-info { flex: 1; padding-right: 10px; }
-        
-        .item-name {
-            font-weight: 600;
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
             color: var(--primary);
-            font-size: 15px;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .brand-sub {
+            font-size: 10px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        /* --- BOTTOM NAVIGATION --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #999;
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.2s;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active { color: var(--primary); }
+
+        /* --- CONTENT CONTAINERS --- */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- HOME TAB --- */
+        .welcome-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-top: 10px;
+            border-top: 5px solid var(--accent);
+        }
+
+        .big-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .contact-row {
             display: flex;
             align-items: center;
-            gap: 6px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            text-align: left;
         }
 
-        .item-desc {
-            font-size: 12px;
-            color: #888;
-            margin-top: 4px;
-            line-height: 1.4;
+        .contact-icon {
+            width: 40px; height: 40px;
+            background: rgba(192, 202, 51, 0.15);
+            color: #9E9D24;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px;
+            font-size: 18px;
+            flex-shrink: 0;
         }
+
+        .contact-text { font-size: 13px; color: var(--text-dark); line-height: 1.4; }
+
+        /* --- MENU TAB --- */
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--primary);
+            margin: 30px 0 15px 0;
+            display: flex; align-items: center;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .menu-item {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            display: flex; justify-content: space-between; align-items: center;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .menu-item.selected {
+            border-color: var(--primary);
+            background: #FDFBF7;
+        }
+
+        .item-content { flex: 1; padding-right: 15px; }
+
+        .item-title {
+            font-weight: 700; font-size: 15px; margin-bottom: 4px;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .item-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; }
 
         .item-price {
-            color: var(--primary);
-            font-weight: 700;
-            margin-top: 6px;
-            font-size: 14px;
+            display: inline-block; margin-top: 6px;
+            font-weight: 700; color: var(--primary); font-size: 14px;
         }
 
-        /* Buttons & Icons */
+        /* Indicators */
+        .dot { width: 12px; height: 12px; border: 1px solid; display: flex; align-items: center; justify-content: center; border-radius: 2px; flex-shrink: 0; }
+        .veg { border-color: var(--green); } .veg::after { content:""; width:6px; height:6px; background:var(--green); border-radius:50%; }
+        .egg { border-color: var(--red); } .egg::after { content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:6px solid var(--red); }
+
         .add-btn {
-            width: 35px;
-            height: 35px;
-            background: #f1f2f6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            transition: 0.2s;
-            font-size: 14px;
-        }
-        .menu-card.selected .add-btn {
-            background: var(--accent);
-            color: white;
-            transform: rotate(360deg);
-        }
-
-        /* Veg/Egg Symbols */
-        .veg-dot {
-            height: 12px; width: 12px;
-            border: 1px solid var(--green);
+            width: 32px; height: 32px;
+            background: #f0f0f0; border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 2px;
+            color: #555; transition: 0.2s;
         }
-        .veg-dot::after { content:""; width:6px; height:6px; background:var(--green); border-radius:50%; }
+        .menu-item.selected .add-btn { background: var(--primary); color: white; }
 
-        .egg-dot {
-            height: 12px; width: 12px;
-            border: 1px solid var(--red);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 2px;
-        }
-        .egg-dot::after { content:""; width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-bottom:6px solid var(--red); }
-
-
-        /* --- GUIDE TAB (Cards) --- */
-        .guide-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
+        /* --- GUIDE TAB --- */
         .landmark-card {
-            background: white;
+            background: var(--white);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            position: relative;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
         }
 
-        .landmark-img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-            display: block;
-            background-color: #eee;
-        }
+        .img-wrapper { position: relative; height: 180px; background: #eee; }
+        .landmark-img { width: 100%; height: 100%; object-fit: cover; }
 
-        .dist-tag {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(44, 62, 80, 0.9);
-            color: var(--accent);
-            padding: 4px 12px;
+        .dist-badge {
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(255,255,255,0.95);
+            color: var(--primary);
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            backdrop-filter: blur(4px);
+            font-size: 11px; font-weight: 700;
         }
 
-        .landmark-body { padding: 15px; }
-        .landmark-title { font-weight: 700; font-size: 16px; color: var(--primary); margin-bottom: 4px; }
-        .landmark-type { font-size: 12px; color: #777; display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-body { padding: 15px; }
+        .card-title { font-weight: 700; font-size: 16px; margin-bottom: 5px; color: var(--primary); }
+        .card-subtitle { font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- BILL BAR --- */
-        .bill-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            max-width: 560px;
-            margin: 0 auto;
+        /* --- FLOATING ORDER BAR --- */
+        .order-bar {
+            position: fixed; bottom: 70px; left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            width: 90%; max-width: 500px;
             background: var(--primary);
             color: white;
             padding: 12px 20px;
             border-radius: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-            transform: translateY(150%);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            z-index: 900;
         }
-        
-        .bill-bar.visible { transform: translateY(0); }
+        .order-bar.show { transform: translateX(-50%) translateY(0); }
 
-        .bill-text { font-size: 11px; opacity: 0.7; }
-        .bill-total { font-size: 18px; font-weight: 700; color: var(--accent); }
-        
         .call-btn {
             background: var(--accent);
             color: var(--primary);
             text-decoration: none;
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px; font-weight: 700;
         }
     </style>
 </head>
 <body>
 
     <header class="app-header">
-        <h1 class="header-title">PAM PREMIUM</h1>
-        <div class="header-sub">Arab Ino | Hotel & Resorts</div>
-        
-        <div class="nav-bar">
-            <button class="nav-btn active" onclick="switchTab('home', this)">Home</button>
-            <button class="nav-btn" onclick="switchTab('menu', this)">Menu</button>
-            <button class="nav-btn" onclick="switchTab('guide', this)">Guide</button>
+        <div>
+            <div class="brand-name">PAM PREMIUM</div> <div class="brand-sub">Arab Ino</div>
         </div>
+        <a href="tel:02652368888" style="color:var(--primary); font-size:20px;"><i class="fas fa-phone-alt"></i></a>
     </header>
 
     <div id="home" class="tab-content active">
-        <div class="home-card">
-            <div class="brand-large">P<span class="brand-accent">A</span>M</div>
-            <div class="brand-large" style="font-size:24px;">Premium</div>
-            <div class="brand-sub">Arab Ino</div>
+        <div class="welcome-card">
+            <div class="big-logo">P<span style="color:var(--accent)">A</span>M</div>
+            <div style="font-size:12px; letter-spacing:4px; color:#999; margin-bottom:30px;">PREMIUM HOTEL</div>
             
-            <hr style="width:40px; border:2px solid var(--accent); border-radius:2px; margin: 20px auto;">
-            
-            <div class="info-box">
-                <div class="info-row">
-                    <i class="fas fa-map-marker-alt info-icon"></i>
-                    <div>Opp. Suraj Plaza, Sarod, Sayajigunj, Vadodara, Gujarat 390 007</div>
-                </div>
-                <div class="info-row">
-                    <i class="fas fa-phone-alt info-icon"></i>
-                    <div><a href="tel:02652368888" style="color:#555; text-decoration:none;">0265-236 8888</a></div>
-                </div>
-                <div class="info-row">
-                    <i class="fas fa-globe info-icon"></i>
-                    <div>www.hotel.pamhotelsindia.com</div>
-                </div>
+            <div class="contact-row">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-text">Opp. Suraj Plaza, Sarod, Sayajigunj,<br>Vadodara, Gujarat 390 007</div>
             </div>
             
-            <button onclick="switchTab('menu', document.querySelectorAll('.nav-btn')[1])" style="background:var(--primary); color:white; border:none; padding:12px 30px; border-radius:25px; margin-top:25px; font-weight:bold; cursor:pointer;">View Menu</button>
+            <div class="contact-row">
+                <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                <div class="contact-text">www.hotel.pamhotelsindia.com</div>
+            </div>
+
+            <div class="contact-row" onclick="window.location.href='tel:02652368888'">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-text" style="font-weight:bold; color:var(--primary);">Call Reception<br>0265-236 8888</div>
+            </div>
         </div>
     </div>
 
     <div id="menu" class="tab-content">
-        <div class="category-title">Continental & Eggs</div>
+        
+        <div class="section-header">Breakfast & Eggs</div>
 
-        <div class="menu-card" onclick="toggleItem(this, 225)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Cereals with Milk</div>
-                <div class="item-desc">Choice of Corn Flakes/Choco Flakes/Museli. Hot or cold milk.</div>
+        <div class="menu-item" onclick="toggleItem(this, 225)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Cereals with Milk</div>
+                <div class="item-desc">Corn/Choco Flakes/Museli. Hot or cold milk.</div>
                 <div class="item-price">₹225</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 300)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Toast & Preserves</div>
+        <div class="menu-item" onclick="toggleItem(this, 300)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Toast & Preserves</div>
                 <div class="item-desc">2 slices toasted bread with butter and marmalade.</div>
                 <div class="item-price">₹300</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-info">
-                <div class="item-name"><div class="egg-dot"></div> &nbsp; Egg White Scrambled</div>
-                <div class="item-desc">4 Eggs White. Accompanied by bread and butter.</div>
+        <div class="menu-item" onclick="toggleItem(this, 325)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot egg"></div> Egg White Scrambled</div>
+                <div class="item-desc">4 Eggs White. Served with bread and butter.</div>
                 <div class="item-price">₹325</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-info">
-                <div class="item-name"><div class="egg-dot"></div> &nbsp; Masala Omelette</div>
-                <div class="item-desc">2 Eggs. With potato and tomato.</div>
+        <div class="menu-item" onclick="toggleItem(this, 325)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot egg"></div> Masala Omelette</div>
+                <div class="item-desc">2 Eggs. Accompanied by potato and tomato.</div>
                 <div class="item-price">₹325</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 325)">
-            <div class="item-info">
-                <div class="item-name"><div class="egg-dot"></div> &nbsp; Fried Egg</div>
-                <div class="item-desc">Sunny side up or both side fried. With toast.</div>
-                <div class="item-price">₹325</div>
-            </div>
-            <div class="add-btn"><i class="fas fa-plus"></i></div>
-        </div>
+        <div class="section-header">Indian Breakfast</div>
 
-        <div class="category-title" style="margin-top:25px;">Indian Breakfast</div>
-
-        <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Puri with Bhaji</div>
-                <div class="item-desc">Home style potato and peas curry with 3 puri.</div>
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Puri with Bhaji</div>
+                <div class="item-desc">Potato and peas curry served with 3 pieces of puri.</div>
                 <div class="item-price">₹275</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Chole Bhature</div>
-                <div class="item-desc">Delhi street style chole with 2 bhatura.</div>
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Chole Bhature</div>
+                <div class="item-desc">Delhi street style chole served with 2 pieces of bhatura.</div>
                 <div class="item-price">₹275</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Stuffed Paratha</div>
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Stuffed Paratha</div>
                 <div class="item-desc">Potato, Paneer, or Cauliflower. Served with curd.</div>
                 <div class="item-price">₹275</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
 
-        <div class="menu-card" onclick="toggleItem(this, 275)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Dosa</div>
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Dosa</div>
                 <div class="item-desc">Masala/Plain/Mysur. With sambhar & chutney.</div>
                 <div class="item-price">₹275</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
-        
-        <div class="menu-card" onclick="toggleItem(this, 225)">
-            <div class="item-info">
-                <div class="item-name"><div class="veg-dot"></div> &nbsp; Uttapam</div>
-                <div class="item-desc">Plain/Masala. With sambhar & chutney.</div>
+
+        <div class="section-header">All Day Dining (Sandwiches/Burgers)</div>
+
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Classic Veg Sandwich</div>
+                <div class="item-desc">Coleslaw/Chutney/Veg. Served with fries.</div>
+                <div class="item-price">₹275</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 375)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Club House Sandwich</div>
+                <div class="item-desc">Double layer with lettuce, veg and cheese. With fries.</div>
+                <div class="item-price">₹375</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 325)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Kathi Roll (Veg/Paneer)</div>
+                <div class="item-desc">Roomali roti stuffed with paneer and tandoori masala.</div>
+                <div class="item-price">₹325</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 375)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot egg"></div> Chicken Burger</div>
+                <div class="item-desc">Chicken patty burger with fries.</div>
+                <div class="item-price">₹375</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="section-header">Soups</div>
+
+        <div class="menu-item" onclick="toggleItem(this, 225)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Cream of Tomato Basil</div>
+                <div class="item-desc">Creamy soup of plum tomatoes.</div>
                 <div class="item-price">₹225</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+        
+        <div class="menu-item" onclick="toggleItem(this, 225)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Veg Manchow Soup</div>
+                <div class="item-desc">Indo-chinese style with fried noodles.</div>
+                <div class="item-price">₹225</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 275)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot egg"></div> Chicken Hot N Sour</div>
+                <div class="item-desc">Spicy Asian soup with chicken and egg drops.</div>
+                <div class="item-price">₹275</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="section-header">Main Course & Starters</div>
+
+        <div class="menu-item" onclick="toggleItem(this, 325)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Chilli Paneer Gravy</div>
+                <div class="item-desc">Fried cottage cheese in sweet and spicy sauce.</div>
+                <div class="item-price">₹325</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 375)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Pasta Alfredo</div>
+                <div class="item-desc">Penne/Fusilli in creamy parmesan sauce with garlic bread.</div>
+                <div class="item-price">₹375</div>
+            </div>
+            <div class="add-btn"><i class="fas fa-plus"></i></div>
+        </div>
+
+        <div class="menu-item" onclick="toggleItem(this, 375)">
+            <div class="item-content">
+                <div class="item-title"><div class="dot veg"></div> Thai Curry (Veg)</div>
+                <div class="item-desc">Red/Green/Yellow curry with coconut milk.</div>
+                <div class="item-price">₹375</div>
             </div>
             <div class="add-btn"><i class="fas fa-plus"></i></div>
         </div>
     </div>
 
     <div id="guide" class="tab-content">
-        <div class="guide-grid">
-            
-            <div class="landmark-card">
-                <span class="dist-tag">2.6 Km</span>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/800px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Laxmi Vilas Palace</div>
-                    <div class="landmark-type"><i class="fas fa-monument"></i> Historic Landmark</div>
-                </div>
+        
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Lakshmi_Vilas_Palace%2C_Vadodara.jpg/800px-Lakshmi_Vilas_Palace%2C_Vadodara.jpg" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">2.6 Km</div>
             </div>
+            <div class="card-body">
+                <div class="card-title">Laxmi Vilas Palace</div>
+                <div class="card-subtitle">Royal Residence</div>
+            </div>
+        </div>
 
-            <div class="landmark-card">
-                <span class="dist-tag">2.2 Km</span>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/800px-Sursagar_Lake_in_Vadodara.JPG" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Sursagar Shiv Statue</div>
-                    <div class="landmark-type"><i class="fas fa-water"></i> Lake & Temple</div>
-                </div>
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sursagar_Lake_in_Vadodara.JPG/800px-Sursagar_Lake_in_Vadodara.JPG" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">2.2 Km</div>
             </div>
+            <div class="card-body">
+                <div class="card-title">Sursagar Shiv Statue</div>
+                <div class="card-subtitle">Lake & Temple</div>
+            </div>
+        </div>
 
-            <div class="landmark-card">
-                <span class="dist-tag">90 Km</span>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Statue of Unity</div>
-                    <div class="landmark-type"><i class="fas fa-globe"></i> World's Tallest Statue</div>
-                </div>
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Statue_of_Unity.jpg/800px-Statue_of_Unity.jpg" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">90 Km</div>
             </div>
+            <div class="card-body">
+                <div class="card-title">Statue of Unity</div>
+                <div class="card-subtitle">World's Tallest Statue</div>
+            </div>
+        </div>
 
-            <div class="landmark-card">
-                <span class="dist-tag">06 Km</span>
-                <img src="https://images.unsplash.com/photo-1579895059530-58046b09944a?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Vadodara Airport</div>
-                    <div class="landmark-type"><i class="fas fa-plane"></i> Transport</div>
-                </div>
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Champaner-Pavagadh_Archaeological_Park.jpg/800px-Champaner-Pavagadh_Archaeological_Park.jpg" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">52.8 Km</div>
             </div>
+            <div class="card-body">
+                <div class="card-title">Mata Temple, Pavagadh</div>
+                <div class="card-subtitle">Pilgrimage</div>
+            </div>
+        </div>
 
-            <div class="landmark-card">
-                <span class="dist-tag">800 Mt</span>
-                <img src="https://images.unsplash.com/photo-1474487548417-781cb714d223?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Railway Station</div>
-                    <div class="landmark-type"><i class="fas fa-train"></i> Central Station</div>
-                </div>
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">06 Km</div>
             </div>
+            <div class="card-body">
+                <div class="card-title">Vadodara Airport</div>
+                <div class="card-subtitle">Transport</div>
+            </div>
+        </div>
 
-             <div class="landmark-card">
-                <span class="dist-tag">3.2 Km</span>
-                <img src="https://images.unsplash.com/photo-1567449303078-5c942454256e?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Inorbit Mall</div>
-                    <div class="landmark-type"><i class="fas fa-shopping-bag"></i> Shopping</div>
-                </div>
+        <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">800 Mt</div>
             </div>
-            
-            <div class="landmark-card">
-                <span class="dist-tag">48 Km</span>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Champaner-Pavagadh_Archaeological_Park.jpg/800px-Champaner-Pavagadh_Archaeological_Park.jpg" class="landmark-img" onerror="imgError(this)">
-                <div class="landmark-body">
-                    <div class="landmark-title">Champaner Fort</div>
-                    <div class="landmark-type"><i class="fas fa-archway"></i> UNESCO Heritage</div>
-                </div>
+            <div class="card-body">
+                <div class="card-title">Railway Station</div>
+                <div class="card-subtitle">Central Station</div>
             </div>
+        </div>
 
+         <div class="landmark-card">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3d9f?auto=format&fit=crop&w=800&q=80" class="landmark-img" onerror="imgFix(this)">
+                <div class="dist-badge">3.2 Km</div>
+            </div>
+            <div class="card-body">
+                <div class="card-title">Inorbit Mall</div>
+                <div class="card-subtitle">Shopping</div>
+            </div>
         </div>
     </div>
 
-    <div class="bill-bar" id="billBar">
+    <div class="order-bar" id="orderBar">
         <div>
-            <div class="bill-text">Order Estimate</div>
-            <div class="bill-total" id="displayTotal">₹0</div>
+            <div style="font-size:10px; opacity:0.8;">ESTIMATED TOTAL</div>
+            <div style="font-size:18px; font-weight:700; color:var(--accent);" id="totalPrice">₹0</div>
         </div>
         <a href="tel:02652368888" class="call-btn">
-            <i class="fas fa-phone-alt"></i> Call Reception
+            Place Order <i class="fas fa-chevron-right" style="font-size:10px; margin-left:5px;"></i>
         </a>
     </div>
 
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('home', this)">
+            <i class="fas fa-home"></i> Home
+        </div>
+        <div class="nav-item" onclick="switchTab('menu', this)">
+            <i class="fas fa-utensils"></i> Menu
+        </div>
+        <div class="nav-item" onclick="switchTab('guide', this)">
+            <i class="fas fa-map-marked-alt"></i> Guide
+        </div>
+    </nav>
+
     <script>
-        // Tab Switching Logic
-        function switchTab(tabId, btn) {
-            // Hide all tabs
+        let total = 0;
+
+        function switchTab(tabId, navEl) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            // Remove active class from all buttons
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             
-            // Show target tab
             document.getElementById(tabId).classList.add('active');
-            // Add active class to clicked button
-            if(btn) btn.classList.add('active');
-            
-            // Scroll to top
+            navEl.classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // Cart Logic
-        let total = 0;
         function toggleItem(card, price) {
             const btn = card.querySelector('.add-btn');
             const icon = btn.querySelector('i');
             
             if (card.classList.contains('selected')) {
-                // Remove Item
                 card.classList.remove('selected');
                 total -= price;
                 icon.className = 'fas fa-plus';
             } else {
-                // Add Item
                 card.classList.add('selected');
                 total += price;
                 icon.className = 'fas fa-check';
@@ -582,21 +599,16 @@
         }
 
         function updateBill() {
-            document.getElementById('displayTotal').innerText = "₹" + total;
-            const bar = document.getElementById('billBar');
-            
-            if (total > 0) {
-                bar.classList.add('visible');
-            } else {
-                bar.classList.remove('visible');
-            }
+            document.getElementById('totalPrice').innerText = "₹" + total;
+            const bar = document.getElementById('orderBar');
+            if(total > 0) bar.classList.add('show');
+            else bar.classList.remove('show');
         }
 
-        // Image Rescue Function (Safety Feature)
-        // If an image link breaks, this replaces it with a nice pattern image
-        function imgError(image) {
-            image.onerror = "";
-            image.src = "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=800&q=80";
+        // Auto-Replace broken images with a placeholder
+        function imgFix(img) {
+            img.onerror = "";
+            img.src = "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=800&q=80";
             return true;
         }
     </script>
