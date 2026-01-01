@@ -11,7 +11,6 @@
     <style>
         :root {
             --gold: #c5a028;
-            --gold-light: #e6c86e;
             --navy: #0a1420;
             --white: #ffffff;
             --text-dark: #222222;
@@ -22,14 +21,15 @@
             background-color: var(--navy);
             color: var(--text-dark);
             margin: 0;
-            padding: 0 0 100px 0;
+            padding: 0 0 120px 0; /* Extra space for bigger footer */
             min-height: 100vh;
             text-align: center;
         }
 
-        /* --- WRAPPER FOR PDF CAPTURE --- */
+        /* --- CONTAINER FOR PDF CAPTURE --- */
         #pdf-container {
-            background-color: var(--navy); /* Ensures background color captures */
+            background-color: var(--navy);
+            margin: 0 auto;
         }
 
         /* --- HEADER --- */
@@ -48,9 +48,8 @@
             background: linear-gradient(to bottom, #fcf6ba, #bf953f, #b38728, #fbf5b7);
             -webkit-background-clip: text;
             background-clip: text;
-            color: transparent; /* Fallback color for PDF usually needs specific handling, handled below */
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
-            /* Force color for PDF generation compatibility */
+            color: transparent;
+            /* Fix for PDF rendering */
             -webkit-text-fill-color: transparent; 
         }
 
@@ -64,27 +63,14 @@
             margin-bottom: 20px;
         }
 
-        /* --- DOWNLOAD BUTTON --- */
-        .download-btn {
+        .event-title {
+            color: white; 
+            font-family: 'Cinzel', serif; 
+            margin-top: 10px; 
+            font-size: 18px;
+            border: 1px solid rgba(255,255,255,0.3);
             display: inline-block;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 15px;
-            border-radius: 30px;
-            color: #ccc;
-            font-size: 11px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            background: rgba(0,0,0,0.3);
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-        
-        .download-btn:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(255,255,255,0.05);
+            padding: 5px 20px;
         }
 
         /* --- MENU CARD --- */
@@ -97,7 +83,7 @@
             position: relative;
             z-index: 5;
             background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
-            min-height: 800px; /* Ensure full height for PDF */
+            min-height: 800px;
         }
 
         .price-frame {
@@ -131,7 +117,7 @@
             align-items: center;
             justify-content: center;
             margin: 45px 0 25px 0;
-            page-break-inside: avoid; /* Keeps headers with content in PDF */
+            page-break-inside: avoid;
         }
         
         .section-separator::before, .section-separator::after {
@@ -177,7 +163,7 @@
             align-items: center;
             padding: 6px 0;
             border-bottom: 1px dashed #f5f5f5;
-            page-break-inside: avoid; /* Prevents splitting items across pages */
+            page-break-inside: avoid;
         }
         .item:last-child { border-bottom: none; }
 
@@ -205,35 +191,56 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- STICKY FOOTER --- */
+        /* --- FOOTER & BUTTONS --- */
         .sticky-footer {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 500px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
             z-index: 1000;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            border-top: 1px solid #eee;
         }
 
-        .book-btn {
-            background: var(--navy);
-            color: var(--gold);
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 50px;
             text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 14px; /* Slightly smaller to fit two */
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 18px;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 25px rgba(10, 20, 32, 0.4);
-            border: 1px solid var(--gold);
             transition: transform 0.2s;
+            cursor: pointer;
+            max-width: 250px;
         }
-        .book-btn:active { transform: scale(0.96); }
+
+        .btn-book {
+            background-color: var(--navy);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(10, 25, 47, 0.4);
+        }
+
+        .btn-download {
+            background-color: white;
+            color: var(--navy);
+            border: 1px solid var(--navy);
+        }
+
+        .action-btn:active { transform: scale(0.96); }
+        .action-btn i { margin-right: 8px; font-size: 16px; }
 
         /* LOADING SPINNER */
         #loading-msg {
@@ -242,32 +249,44 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             color: white;
-            padding: 20px;
+            padding: 20px 40px;
             border-radius: 10px;
             z-index: 9999;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /* --- PDF SPECIFIC STYLES --- */
+        /* This class is added to body during PDF generation to force wide layout */
+        body.generating-pdf {
+            width: 800px; /* Force A4 width equivalent */
+            margin: 0 auto;
+        }
+        body.generating-pdf .menu-card {
+            margin-top: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        body.generating-pdf .header-bg {
+            padding-bottom: 30px;
         }
 
     </style>
 </head>
 <body>
 
-    <div id="loading-msg"><i class="fas fa-spinner fa-spin"></i> Generating PDF...</div>
+    <div id="loading-msg">
+        <i class="fas fa-spinner fa-spin" style="margin-bottom: 10px; font-size: 24px;"></i><br>
+        Creating PDF...
+    </div>
 
     <div id="pdf-container">
         
         <div class="header-bg">
             <h1 class="brand-name">Arab Ino</h1>
             <div class="hotel-name">Hotel Pam Premium</div>
-            
-            <div onclick="generatePDF()" class="download-btn" data-html2canvas-ignore="true">
-                <i class="fas fa-file-pdf"></i> Download PDF
-            </div>
-
-            <div style="color:white; font-family:'Cinzel', serif; margin-top:10px; font-size:18px;">
-                Jan 1 Grand Feast
-            </div>
+            <div class="event-title">Jan 1 Grand Feast</div>
         </div>
 
         <div class="menu-card">
@@ -363,9 +382,15 @@
     </div>
 
     <div class="sticky-footer" data-html2canvas-ignore="true">
-        <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20a%20table%20for%20Jan%201" class="book-btn">
-            <i class="fab fa-whatsapp" style="margin-right:10px; font-size:20px;"></i> Book Table
+        
+        <div onclick="generatePDF()" class="action-btn btn-download">
+            <i class="fas fa-download"></i> Download
+        </div>
+
+        <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20a%20table%20for%20Jan%201" class="action-btn btn-book">
+            <i class="fas fa-whatsapp"></i> Book Now
         </a>
+
     </div>
 
     <script>
@@ -373,22 +398,26 @@
             // Show loading message
             document.getElementById('loading-msg').style.display = 'block';
 
+            // 1. Temporarily force body to be wide (A4 size roughly)
+            document.body.classList.add('generating-pdf');
+
             // Select the element
             var element = document.getElementById('pdf-container');
             
-            // Options
+            // Options for high quality A4
             var opt = {
               margin:       0,
               filename:     'Hotel_Pam_Jan1_Menu.pdf',
               image:        { type: 'jpeg', quality: 0.98 },
               html2canvas:  { scale: 2, useCORS: true },
-              jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+              jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
             // Generate
             html2pdf().set(opt).from(element).save().then(function(){
-                // Hide loading message when done
+                // Hide loading message and revert styles
                 document.getElementById('loading-msg').style.display = 'none';
+                document.body.classList.remove('generating-pdf');
             });
         }
     </script>
