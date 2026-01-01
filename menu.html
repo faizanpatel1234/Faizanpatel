@@ -3,203 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand New Year Gala - Hotel Pam Premium</title>
+    <title>Jan 1 - Hotel Pam Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #020202;
+            background-color: #050505;
             color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* --- FIREWORKS ANIMATION --- */
+        /* --- CORNER FIREWORKS ANIMATION --- */
         @keyframes firework {
-            0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
-            50% { width: 0.5vmin; opacity: 1; }
-            100% { width: var(--finalSize); opacity: 0; }
+            0% { width: 0.5vmin; opacity: 1; }
+            50% { width: 30vmin; opacity: 0.8; }
+            100% { width: 45vmin; opacity: 0; }
         }
         
-        .firework,
-        .firework::before,
-        .firework::after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .firework {
+            position: fixed;
             width: 0.5vmin;
             aspect-ratio: 1;
+            pointer-events: none;
+            z-index: 9999;
             background: radial-gradient(circle, #ff0 0.2vmin, #0000 0) 50% 00%,
-                        radial-gradient(circle, #ff0 0.3vmin, #0000 0) 00% 50%,
-                        radial-gradient(circle, #ff0 0.5vmin, #0000 0) 50% 99%,
-                        radial-gradient(circle, #ff0 0.2vmin, #0000 0) 99% 50%,
+                        radial-gradient(circle, #d4af37 0.3vmin, #0000 0) 00% 50%,
+                        radial-gradient(circle, #00ffbf 0.5vmin, #0000 0) 50% 99%,
+                        radial-gradient(circle, #d4af37 0.2vmin, #0000 0) 99% 50%,
                         radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 90%,
-                        radial-gradient(circle, #ff0 0.5vmin, #0000 0) 95% 90%,
-                        radial-gradient(circle, #ff0 0.5vmin, #0000 0) 10% 60%,
+                        radial-gradient(circle, #00ffbf 0.5vmin, #0000 0) 95% 90%,
+                        radial-gradient(circle, #d4af37 0.5vmin, #0000 0) 10% 60%,
                         radial-gradient(circle, #ff0 0.2vmin, #0000 0) 31% 80%,
-                        radial-gradient(circle, #ff0 0.3vmin, #0000 0) 80% 10%,
-                        radial-gradient(circle, #ff0 0.2vmin, #0000 0) 90% 23%,
+                        radial-gradient(circle, #d4af37 0.3vmin, #0000 0) 80% 10%,
+                        radial-gradient(circle, #00ffbf 0.2vmin, #0000 0) 90% 23%,
                         radial-gradient(circle, #ff0 0.3vmin, #0000 0) 45% 20%,
-                        radial-gradient(circle, #ff0 0.5vmin, #0000 0) 13% 24%;
+                        radial-gradient(circle, #d4af37 0.5vmin, #0000 0) 13% 24%;
             background-size: 0.5vmin 0.5vmin;
             background-repeat: no-repeat;
             animation: firework 2s infinite;
         }
 
-        .firework::before {
-            transform: translate(-50%, -50%) rotate(25deg) !important; 
-        }
-        .firework::after {
-            transform: translate(-50%, -50%) rotate(-37deg) !important;
-        }
-
         /* --- CARD STYLES --- */
         .menu-card {
-            max-width: 650px;
+            width: 100%;
+            max-width: 600px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.97);
-            border-radius: 15px;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.5); 
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); 
             position: relative;
             overflow: hidden;
             border: 2px solid #d4af37;
             z-index: 10;
-            animation: slideUp 1s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .top-banner {
-            background: linear-gradient(to bottom, #2b0c0c, #590505);
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); /* New Fresh Color for Jan 1 */
             color: white;
-            padding: 40px 20px;
+            padding: 30px 15px;
             text-align: center;
             position: relative;
-            border-bottom: 4px solid #d4af37;
+            border-bottom: 3px solid #d4af37;
         }
 
-        /* Shimmering Gold Text */
+        /* --- GLOW ANIMATION --- */
+        @keyframes goldenGlow {
+            0% { text-shadow: 0 0 5px #b88a00; transform: scale(1); }
+            50% { text-shadow: 0 0 20px #ffd700, 0 0 40px #fff; transform: scale(1.05); }
+            100% { text-shadow: 0 0 5px #b88a00; transform: scale(1); }
+        }
+
         .gold-text {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C, #BF953F);
-            background-size: 200% auto;
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: shine 3s linear infinite;
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
+            animation: goldenGlow 2s ease-in-out infinite alternate;
         }
 
         .brand-name {
             font-family: 'Great Vibes', cursive;
-            font-size: 50px;
+            font-size: 45px;
             margin: 0;
             line-height: 1.2;
+            padding: 10px 0;
         }
 
         .hotel-name {
             font-family: 'Cinzel', serif;
-            font-size: 14px;
-            letter-spacing: 3px;
+            font-size: 12px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: #ddd;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .year-display {
             font-family: 'Cinzel', serif;
-            font-size: 70px;
+            font-size: 65px;
             font-weight: 700;
             line-height: 1;
-            margin: 15px 0;
+            margin: 10px 0;
+            padding: 10px 0;
         }
-
+        
         .event-title {
             font-family: 'Cinzel', serif;
-            font-size: 22px;
-            letter-spacing: 2px;
+            font-size: 18px;
+            letter-spacing: 1px;
             color: #fff;
-            margin-top: 10px;
+            margin-top: 5px;
             border-top: 1px solid rgba(255,255,255,0.3);
             border-bottom: 1px solid rgba(255,255,255,0.3);
             display: inline-block;
-            padding: 5px 20px;
+            padding: 5px 15px;
         }
 
         .price-badge {
             position: absolute;
-            bottom: -25px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
             background: #d4af37;
-            color: #3e0000;
+            color: #000;
             font-weight: bold;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 50px;
-            font-size: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 18px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
             border: 2px solid #fff;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
+            white-space: nowrap;
         }
 
         .content-area {
-            padding: 60px 25px 30px 25px;
+            padding: 40px 15px 20px 15px;
             background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
         }
 
         .section-title {
-            color: #8E0E00;
+            color: #2c5364; /* Matching new header color */
             font-family: 'Cinzel', serif;
-            font-size: 26px;
+            font-size: 22px;
             text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
+            margin-top: 35px;
+            margin-bottom: 15px;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
         
         .section-title::before, .section-title::after {
             content: "";
             height: 2px;
-            width: 50px;
+            width: 30px;
             background: #d4af37;
         }
 
-        .section-title i {
-            color: #d4af37;
-            font-size: 20px;
-        }
+        .section-title i { color: #d4af37; font-size: 18px; }
 
         .subsection {
             text-align: center;
             color: #fff;
             background: #1a1a1a;
-            padding: 6px 20px;
+            padding: 6px 15px;
             border-radius: 20px;
             display: table;
-            margin: 20px auto 10px auto;
-            font-size: 12px;
+            margin: 15px auto 10px auto;
+            font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             border: 1px solid #d4af37;
         }
 
@@ -207,67 +187,55 @@
             text-align: center;
             margin-bottom: 10px;
             font-size: 16px;
-            color: #444;
-            font-weight: 500;
-            transition: transform 0.2s, color 0.2s;
-            cursor: default;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.4;
         }
         
-        /* Interactive Hover Effect on Food Items */
-        .item:hover {
-            transform: scale(1.1);
-            color: #8E0E00;
-        }
-        
-        .veg-mark { color: #2ecc71; margin-right: 8px; font-size: 12px; }
-        .nonveg-mark { color: #e74c3c; margin-right: 8px; font-size: 12px; }
+        .veg-mark { color: #2ecc71; margin-right: 5px; font-size: 12px; }
+        .nonveg-mark { color: #e74c3c; margin-right: 5px; font-size: 12px; }
 
         .booking-section {
-            background: #fff5e6;
-            margin-top: 40px;
-            padding: 30px;
+            background: #f0f8ff;
+            margin-top: 30px;
+            padding: 25px 15px;
             border-radius: 10px;
             text-align: center;
             border: 2px dashed #d4af37;
         }
 
         .order-btn {
-            background: linear-gradient(45deg, #11998e, #38ef7d, #11998e);
-            background-size: 200% auto;
+            background: linear-gradient(45deg, #11998e, #38ef7d);
             color: white;
             text-decoration: none;
-            display: inline-block;
-            width: 80%;
-            padding: 18px;
+            display: block;
+            width: 100%;
+            padding: 18px 0;
             border-radius: 50px;
             font-weight: bold;
             font-size: 18px;
-            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
+            box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: gradientMove 3s linear infinite;
-        }
-
-        @keyframes gradientMove {
-            to { background-position: 200% center; }
+            box-sizing: border-box;
         }
 
         .footer {
             text-align: center;
             background: #111;
             color: #888;
-            padding: 30px 20px;
-            font-size: 13px;
-            letter-spacing: 1px;
+            padding: 20px;
+            font-size: 12px;
             border-top: 4px solid #d4af37;
         }
     </style>
 </head>
 <body>
 
-    <div class="firework" style="left: 15%; top: 20%; --x: -50%; --initialY: 60vmin; --initialSize: 0.5vmin; --finalSize: 45vmin;"></div>
-    <div class="firework" style="left: 85%; top: 20%; --x: 30%; --initialY: 60vmin; --initialSize: 0.5vmin; --finalSize: 50vmin; animation-delay: 0.5s;"></div>
-    <div class="firework" style="left: 50%; top: 10%; --x: -50%; --initialY: 60vmin; --initialSize: 0.5vmin; --finalSize: 60vmin; animation-delay: 1s;"></div>
+    <div class="firework" style="top: 10px; left: 10px;"></div>
+    <div class="firework" style="top: 10px; right: 10px; animation-delay: 0.5s;"></div>
+    <div class="firework" style="bottom: 10px; left: 10px; animation-delay: 1s;"></div>
+    <div class="firework" style="bottom: 10px; right: 10px; animation-delay: 1.5s;"></div>
 
     <div class="menu-card">
         
@@ -275,9 +243,9 @@
             <h2 class="brand-name gold-text">Arab Ino</h2>
             <div class="hotel-name">Hotel Pam Premium, Vadodara</div>
             
-            <div class="event-title">New Year's Eve Gala</div>
+            <div class="event-title">New Year's Day Feast</div>
             
-            <div class="year-display gold-text">2026</div>
+            <div class="year-display gold-text">Jan 1</div>
             
             <div class="price-badge">₹ 749 + GST</div>
         </div>
@@ -352,9 +320,9 @@
             <div class="item">Premium Ice-Cream</div>
 
             <div class="booking-section">
-                <div style="margin-bottom: 15px; color: #555;">Reserve your table before it's full!</div>
-                <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20tables%20for%20the%20New%20Year%20Buffet" class="order-btn">
-                    <i class="fab fa-whatsapp"></i> Book Now
+                <div style="margin-bottom: 15px; color: #555; font-weight:bold;">Tap below to book:</div>
+                <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20tables%20for%20the%20Jan%201%20Feast" class="order-btn">
+                    <i class="fab fa-whatsapp"></i> Reserve Table
                 </a>
             </div>
 
@@ -362,7 +330,7 @@
 
         <div class="footer">
             <h3 style="color: #d4af37; margin:0;">HOTEL PAM PREMIUM</h3>
-            <p>We wish you a prosperous New Year 2026</p>
+            <p>Welcome to 2026</p>
         </div>
     </div>
 
