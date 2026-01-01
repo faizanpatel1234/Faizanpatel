@@ -12,41 +12,35 @@
             --gold: #d4af37;
             --navy: #0a192f;
             --white: #ffffff;
-            --off-white: #f9f9f9;
-            --text-dark: #333333;
+            --off-white: #f8f8f8;
+            --text-dark: #222222;
         }
 
         body {
             font-family: 'Lato', sans-serif;
-            background-color: var(--navy); /* Premium Dark Background */
+            background-color: var(--navy);
             color: var(--text-dark);
             margin: 0;
-            padding: 0 0 80px 0; /* Space for bottom button */
+            padding: 0 0 90px 0; /* Extra space for bottom button */
             min-height: 100vh;
         }
 
-        /* --- HEADER DESIGN --- */
+        /* --- HEADER --- */
         .header-bg {
             background-color: var(--navy);
-            padding: 30px 20px 40px 20px;
+            padding: 40px 20px 50px 20px;
             text-align: center;
-            border-bottom: 2px solid var(--gold);
-        }
-
-        /* Breathing Animation for Title */
-        @keyframes breathe {
-            0% { opacity: 0.7; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(0.98); }
+            background-image: radial-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .brand-name {
             font-family: 'Great Vibes', cursive;
-            font-size: 50px;
+            font-size: 55px;
             color: var(--gold);
             margin: 0;
-            line-height: 1.2;
-            animation: breathe 4s ease-in-out infinite;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hotel-name {
@@ -54,158 +48,124 @@
             font-size: 11px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 15px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 5px;
         }
 
-        .event-badge {
-            display: inline-block;
-            border: 1px solid var(--gold);
-            color: #fff;
-            padding: 5px 15px;
+        .event-title {
             font-family: 'Cinzel', serif;
-            font-size: 14px;
+            color: #fff;
+            font-size: 18px;
+            margin-top: 20px;
+            border: 1px solid var(--gold);
+            display: inline-block;
+            padding: 8px 20px;
             letter-spacing: 1px;
-            margin-top: 10px;
         }
 
-        /* --- MENU CARD CONTAINER --- */
+        /* --- MENU CARD --- */
         .menu-container {
-            background-color: var(--off-white);
-            border-radius: 20px 20px 0 0;
-            margin-top: -20px; /* Overlap effect */
+            background-color: var(--white);
+            border-radius: 25px 25px 0 0;
+            margin-top: -30px;
             padding: 30px 20px;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
-            min-height: 60vh;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
+            position: relative;
         }
 
         .price-section {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
         }
 
         .price-text {
             font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--navy);
         }
-        .price-sub {
-            font-size: 12px;
-            color: #777;
-        }
 
-        /* --- COLLAPSIBLE SECTIONS (ACCORDION) --- */
-        details {
-            background: #fff;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-            border: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        details[open] {
-            border-color: var(--gold);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
-        }
-
-        summary {
-            padding: 18px 20px;
-            cursor: pointer;
-            list-style: none;
-            position: relative;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            color: var(--navy);
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Remove default arrow */
-        summary::-webkit-details-marker { display: none; }
-
-        /* Custom Arrow */
-        summary::after {
-            content: '\f107'; /* FontAwesome Down Arrow */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-
-        details[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        summary i {
-            color: var(--gold);
-            margin-right: 12px;
-            width: 20px;
+        /* --- SECTIONS --- */
+        .section-header {
             text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .section-content {
-            padding: 0 20px 20px 20px;
-            border-top: 1px solid #f0f0f0;
-            animation: slideDown 0.3s ease-out;
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--navy);
+            font-weight: 700;
+            background: var(--white);
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+        }
+        
+        .section-header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+            z-index: 1;
+            opacity: 0.5;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- FOOD ITEMS --- */
         .subsection-title {
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #999;
-            margin: 20px 0 10px 0;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin: 25px 0 10px 0;
             font-weight: 700;
             text-align: center;
-            border-bottom: 1px solid #eee;
-            line-height: 0.1em;
         }
-        .subsection-title span {
-            background: #fff;
-            padding: 0 10px;
+
+        /* --- ITEMS --- */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
+            align-items: center;
             padding: 5px 0;
         }
 
         .dot {
-            margin-top: 6px;
-            margin-right: 10px;
             font-size: 10px;
+            margin-right: 12px;
+            margin-top: 1px;
         }
         .veg { color: #2ecc71; }
         .nonveg { color: #e74c3c; }
-        .neutral { color: var(--gold); }
+        .neutral { color: var(--navy); }
 
         .item-name {
-            font-size: 15px;
+            font-size: 16px;
             color: #444;
-            line-height: 1.4;
+            font-weight: 400;
         }
 
-        /* --- STICKY BOTTOM BUTTON --- */
+        /* --- STICKY FOOTER --- */
         .sticky-footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #fff;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 15px 20px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
             box-sizing: border-box;
             z-index: 1000;
@@ -219,7 +179,7 @@
             text-decoration: none;
             width: 100%;
             max-width: 500px;
-            padding: 15px;
+            padding: 16px;
             text-align: center;
             border-radius: 50px;
             font-family: 'Cinzel', serif;
@@ -230,14 +190,13 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.3);
-            border: 1px solid var(--gold);
+            box-shadow: 0 4px 15px rgba(10, 25, 47, 0.4);
+            transition: transform 0.2s;
         }
 
         .book-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.96);
         }
-
     </style>
 </head>
 <body>
@@ -245,108 +204,108 @@
     <div class="header-bg">
         <h1 class="brand-name">Arab Ino</h1>
         <div class="hotel-name">Hotel Pam Premium</div>
-        <div class="event-badge">Jan 1st Grand Feast</div>
+        <div class="event-title">Jan 1 Grand Feast</div>
     </div>
 
     <div class="menu-container">
         
         <div class="price-section">
-            <div class="price-text">₹ 749 <span style="font-size:16px; font-weight:400;">+ GST</span></div>
-            <div class="price-sub">Per Person | Unlimited Buffet</div>
-            <div style="font-size: 12px; color: #999; margin-top:5px;">(Tap sections below to view menu)</div>
+            <div class="price-text">₹ 749 <span style="font-size:14px; font-weight:400; color:#555;">+ GST</span></div>
+            <div style="font-size: 13px; color: #777; margin-top:5px;">Unlimited Buffet Dinner</div>
         </div>
 
-        <details>
-            <summary><i class="fas fa-glass-cheers"></i> Welcome Drinks</summary>
-            <div class="section-content">
-                [cite_start]<div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Chilled Butter Milk [cite: 7]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Signature Mocktail [cite: 8]</div></div>
-            </div>
-        </details>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-glass-cheers" style="color:#d4af37; margin-right:8px;"></i> Drinks</div>
+        </div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Chilled Butter Milk</div></div>
+            <div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Signature Mocktail</div></div>
+        </div>
 
-        <details>
-            <summary><i class="fas fa-mug-hot"></i> Soups</summary>
-            <div class="section-content">
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Creamy Corn Chowdar Soup [cite: 10]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Gosht Paya Shorba [cite: 12]</div></div>
-            </div>
-        </details>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-mug-hot" style="color:#d4af37; margin-right:8px;"></i> Soups</div>
+        </div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Creamy Corn Chowdar Soup</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Gosht Paya Shorba</div></div>
+        </div>
 
-        <details>
-            <summary><i class="fas fa-leaf"></i> Salads & Raita</summary>
-            <div class="section-content">
-                <div class="subsection-title"><span>Garden Fresh</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Green Garden Salad [cite: 14]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Balsamic Quinoa Berry Salad [cite: 15]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Oliver Caesar Salad [cite: 16]</div></div>
-                
-                <div class="subsection-title"><span>Non-Veg</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Greek Chickpea Chicken Salad [cite: 18]</div></div>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-leaf" style="color:#d4af37; margin-right:8px;"></i> Salads</div>
+        </div>
+        <div class="subsection-title">Garden Fresh</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Green Garden Salad</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Balsamic Quinoa Berry Salad</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Oliver Caesar Salad</div></div>
+        </div>
+        <div class="subsection-title">Non-Veg</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Greek Chickpea Chicken Salad</div></div>
+        </div>
 
-                <div class="subsection-title"><span>Accompaniments</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Boondi Raita / Pineapple Raita [cite: 21, 22]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Curd Rice [cite: 23]</div></div>
-            </div>
-        </details>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-star" style="color:#d4af37; margin-right:8px;"></i> Starters</div>
+        </div>
+        <div class="subsection-title">Vegetarian</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Funghi Alla Trapanese</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Cheese Jalapeno Cigar</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Veg Dumplings in Oyster Sauce</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Paneer Kali Mirch Tikka</div></div>
+        </div>
+        
+        <div class="subsection-title">Non-Vegetarian</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Tangdi Kebab</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Amritsari Tandoori Jhinga</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">King Fish Fry</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Kache Keeme Ke Kebab</div></div>
+        </div>
 
-        <details open> <summary><i class="fas fa-star"></i> Appetizers</summary>
-            <div class="section-content">
-                <div class="subsection-title"><span>Vegetarian</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Funghi Alla Trapanese [cite: 25]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Cheese Jalapeno Cigar [cite: 26]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Veg Dumplings in Oyster Sauce [cite: 27]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Paneer Kali Mirch Tikka [cite: 28]</div></div>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-fire-alt" style="color:#d4af37; margin-right:8px;"></i> Live</div>
+        </div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Mutton Keema with Pav</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Murgh Lukhnowi Biryani</div></div>
+            <div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Kathi Rolls (Veg & Non-Veg)</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Samosa with Ragda</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Pani Puri</div></div>
+        </div>
 
-                <div class="subsection-title"><span>Non-Vegetarian</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Tangdi Kebab [cite: 30]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Amritsari Tandoori Jhinga [cite: 31]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">King Fish Fry [cite: 32]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Kache Keeme Ke Kebab [cite: 33]</div></div>
-            </div>
-        </details>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-utensils" style="color:#d4af37; margin-right:8px;"></i> Main Course</div>
+        </div>
+        <div class="subsection-title">Indian Specialities</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Methi Chaman</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Sarson Ka Saag with Missi Roti</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Dal Makhani</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Kashmiri Veg Pulao</div></div>
+        </div>
+        
+        <div class="subsection-title">Global & Non-Veg</div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Baked Mac & Cheese</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Veg Manchurian Gravy</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Gongura Mamsam</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Chicken Vindaloo</div></div>
+            <div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Malabar Prawns Biryani</div></div>
+        </div>
 
-        <details>
-            <summary><i class="fas fa-fire-alt"></i> Live Stations</summary>
-            <div class="section-content">
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Mutton Keema with Pav [cite: 38]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Murgh Lukhnowi Biryani [cite: 39]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot neutral"></i> <div class="item-name">Kathi Rolls (Veg & Non-Veg) [cite: 40, 41]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Samosa with Ragda [cite: 42]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Pani Puri [cite: 43]</div></div>
-            </div>
-        </details>
-
-        <details>
-            <summary><i class="fas fa-utensils"></i> Main Course</summary>
-            <div class="section-content">
-                <div class="subsection-title"><span>Indian Veg</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Methi Chaman [cite: 45]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Sarson Ka Saag with Missi Roti [cite: 46]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Dal Makhani [cite: 48]</div></div>
-                
-                <div class="subsection-title"><span>Global</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Baked Mac & Cheese [cite: 54]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Veg Manchurian Gravy [cite: 52]</div></div>
-
-                <div class="subsection-title"><span>Non-Veg</span></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Gongura Mamsam [cite: 56]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Chicken Vindaloo [cite: 57]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot nonveg"></i> <div class="item-name">Malabar Prawns Biryani [cite: 58]</div></div>
-            </div>
-        </details>
-
-        <details>
-            <summary><i class="fas fa-cookie-bite"></i> Desserts</summary>
-            <div class="section-content">
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Hot Jalebi & Rabdi [cite: 60, 61]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Gajar Ka Halwa [cite: 62]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Assorted Pastries [cite: 64]</div></div>
-                [cite_start]<div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Premium Ice-Cream [cite: 65]</div></div>
-            </div>
-        </details>
+        <div class="section-header">
+            <div class="section-title"><i class="fas fa-cookie-bite" style="color:#d4af37; margin-right:8px;"></i> Desserts</div>
+        </div>
+        <div class="item-list">
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Hot Jalebi & Rabdi</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Gajar Ka Halwa</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Assorted Pastries</div></div>
+            <div class="item"><i class="fas fa-circle dot veg"></i> <div class="item-name">Premium Ice-Cream</div></div>
+        </div>
         
         <br>
-        <div style="text-align: center; color: #aaa; font-size: 11px;">
+        <div style="text-align: center; color: #aaa; font-size: 11px; margin-top:20px;">
             Service Charge as applicable.<br>
             Hotel Pam Premium, Vadodara.
         </div>
@@ -355,7 +314,7 @@
 
     <div class="sticky-footer">
         <a href="https://wa.me/917862059842?text=Hi%20Pam%20Premium,%20I%20want%20to%20book%20a%20table%20for%20Jan%201" class="book-btn">
-            <i class="fab fa-whatsapp"></i> Book Table Now
+            <i class="fab fa-whatsapp" style="font-size:20px;"></i> Book Table
         </a>
     </div>
 
