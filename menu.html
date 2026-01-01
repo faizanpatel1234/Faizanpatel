@@ -26,6 +26,12 @@
             text-align: center;
         }
 
+        /* --- CONTAINER --- */
+        #pdf-container {
+            background-color: var(--navy);
+            margin: 0 auto;
+        }
+
         /* --- HEADER --- */
         .header-bg {
             background-color: var(--navy);
@@ -43,7 +49,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            /* PDF Fallback Color */
             -webkit-text-fill-color: transparent; 
         }
 
@@ -78,9 +83,6 @@
             z-index: 5;
             background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
             min-height: 800px;
-            max-width: 100%; /* Default mobile width */
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .price-frame {
@@ -114,7 +116,7 @@
             align-items: center;
             justify-content: center;
             margin: 45px 0 25px 0;
-            page-break-inside: avoid;
+            page-break-after: avoid; /* Keep title with content */
         }
         
         .section-separator::before, .section-separator::after {
@@ -160,7 +162,7 @@
             align-items: center;
             padding: 6px 0;
             border-bottom: 1px dashed #f5f5f5;
-            page-break-inside: avoid;
+            page-break-inside: avoid; /* Don't split single items */
         }
         .item:last-child { border-bottom: none; }
 
@@ -239,7 +241,6 @@
         .action-btn:active { transform: scale(0.96); }
         .action-btn i { margin-right: 8px; font-size: 16px; }
 
-        /* LOADING SPINNER */
         #loading-msg {
             display: none;
             position: fixed;
@@ -254,33 +255,30 @@
             font-family: 'Lato', sans-serif;
         }
 
-        /* --- PDF MODE STYLES --- 
-           This class is added via JS only during PDF generation 
-        */
+        /* --- PDF STYLES --- */
         .pdf-mode-active {
-            width: 800px !important; /* Force Wide A4 Width */
+            width: 800px !important; 
             margin: 0 auto !important;
             background: var(--navy) !important;
         }
         
         .pdf-mode-active .menu-card {
-            width: 750px !important; /* Wide Card */
+            width: 750px !important;
             max-width: none !important;
             margin: -30px auto 0 auto !important;
             box-shadow: none !important;
             border-radius: 0 !important;
             padding: 40px !important;
-        }
-        
-        .pdf-mode-active .header-bg {
-            padding-bottom: 50px !important;
+            min-height: auto !important;
         }
         
         .pdf-mode-active .brand-name {
-            /* Force solid color for PDF because gradients bug out */
             -webkit-text-fill-color: #d4af37 !important; 
             color: #d4af37 !important;
         }
+        
+        /* Force page breaks if needed */
+        .page-break { page-break-before: always; }
 
     </style>
 </head>
@@ -315,7 +313,7 @@
             <div class="section-separator">
                 <div class="section-title">Soups</div>
             </div>
-            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Creamy Corn Chowdar Soup</span></div></div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Creamy Corn Chowder Soup</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gosht Paya Shorba</span></div></div>
 
             <div class="section-separator">
@@ -324,10 +322,14 @@
             <div class="subsection-header">Garden Fresh</div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Green Garden Salad</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Balsamic Quinoa Berry Salad</span></div></div>
-            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Oliver Caesar Salad</span></div></div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Olive Caesar Salad</span></div></div>
             
             <div class="subsection-header">Non-Veg</div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Greek Chickpea Chicken Salad</span></div></div>
+
+            <div class="subsection-header">Accompaniments (Added)</div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Plain Curd & Boondi Raita</span></div></div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Pineapple Raita & Curd Rice</span></div></div>
 
             <div class="section-separator">
                 <span class="diamond">♦</span>
@@ -365,10 +367,12 @@
             <div class="subsection-header">Indian Specialties</div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Methi Chaman</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Sarson Ka Saag with Missi Roti</span></div></div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Nanhi Subzi Ka Mela</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Dal Makhani</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Kashmiri Veg Pulao</span></div></div>
 
             <div class="subsection-header">Global & Non-Veg</div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Singapuri Noodles</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Baked Mac & Cheese</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Veg Manchurian Gravy</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot nonveg"></i><span class="item-name">Gongura Mamsam</span></div></div>
@@ -380,6 +384,7 @@
             </div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Hot Jalebi & Rabdi</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Gajar Ka Halwa</span></div></div>
+            <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Soan Papdi</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Assorted Pastries</span></div></div>
             <div class="item"><div class="item-content"><i class="fas fa-circle dot veg"></i><span class="item-name">Premium Ice-Cream</span></div></div>
 
@@ -405,25 +410,24 @@
 
     <script>
         function generatePDF() {
-            // 1. Show loading
             document.getElementById('loading-msg').style.display = 'block';
 
-            // 2. Add specific class to container to FORCE wide layout (A4 Style)
             var element = document.getElementById('pdf-container');
+            
+            // Activate Wide Layout for PDF Capture
             element.classList.add('pdf-mode-active');
             
-            // 3. Configure PDF options
             var opt = {
               margin:       0,
               filename:     'Hotel_Pam_Jan1_Menu.pdf',
               image:        { type: 'jpeg', quality: 0.98 },
               html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
-              jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+              jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+              pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
             };
 
-            // 4. Generate & Save
             html2pdf().set(opt).from(element).save().then(function(){
-                // 5. Cleanup: Remove class and hide loading
+                // Revert Layout
                 element.classList.remove('pdf-mode-active');
                 document.getElementById('loading-msg').style.display = 'none';
             });
