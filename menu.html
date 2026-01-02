@@ -1,148 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Pam Premium - Dinner Menu</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <style>
-        body { font-family: 'Helvetica', 'Arial', sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .menu-container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            border: 2px solid #d4af37; /* Gold Border */
-        }
-        h1 { text-align: center; color: #d4af37; text-transform: uppercase; margin-bottom: 5px; }
-        .subtitle { text-align: center; font-style: italic; color: #555; margin-bottom: 20px; }
-        .price-box {
-            text-align: center;
-            background-color: #fff8e1;
-            padding: 15px;
-            border: 1px dashed #d4af37;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 30px;
-            color: #bfa15f;
-        }
-        h2 {
-            background-color: #333;
-            color: #fff;
-            padding: 8px 15px;
-            font-size: 16px;
-            text-transform: uppercase;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-        .item-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-        .item-name { font-weight: bold; color: #333; }
-        .download-btn {
-            display: block;
-            width: 100%;
-            max-width: 250px;
-            margin: 0 auto 20px auto;
-            padding: 12px;
-            background-color: #d4af37;
-            color: white;
-            text-align: center;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .download-btn:hover { background-color: #bfa15f; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Pam Premium - Menu</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  body { font-family: 'Georgia', serif; color: #333; max-width: 800px; margin: auto; padding: 20px; border: 2px solid #d4af37; background-color: white; }
+  h1 { text-align: center; color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-size: 32px; margin-bottom: 5px; }
+  .subtitle { text-align: center; font-style: italic; color: #555; margin-bottom: 20px; }
+  .price-box { text-align: center; background-color: #f9f9f9; padding: 10px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 18px; margin-bottom: 30px; }
+  h2 { border-bottom: 2px solid #d4af37; padding-bottom: 5px; font-size: 18px; color: #222; margin-top: 25px; text-transform: uppercase; }
+  .item { margin-bottom: 8px; font-size: 14px; line-height: 1.4; }
+  .item span { font-weight: bold; }
+  .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #777; border-top: 1px solid #eee; padding-top: 10px; }
+  
+  /* 2-Column Layout */
+  .columns { display: flex; justify-content: space-between; gap: 20px; }
+  .column { width: 48%; }
+
+  /* Mobile Responsive: Stacks columns on small screens */
+  @media (max-width: 600px) {
+    .columns { flex-direction: column; }
+    .column { width: 100%; }
+  }
+
+  /* Button Style */
+  .download-btn {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 20px auto;
+      padding: 10px;
+      background-color: #d4af37;
+      color: white;
+      text-align: center;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Arial', sans-serif;
+  }
+</style>
 </head>
 <body>
 
-<button class="download-btn" onclick="generatePDF()">📥 Download Menu PDF</button>
+  <button class="download-btn" onclick="generatePDF()">📥 Download PDF</button>
 
-<div class="menu-container" id="menu-content">
-    
-    <h1>Hotel Pam Premium</h1>
-    <div class="subtitle">02 Jan - Buffet Dinner Menu</div>
-    
-    <div class="price-box">
-        PRICE: ₹ 749 + GST
-    </div>
+  <div id="menu-content">
+      <h1>Hotel Pam Premium</h1>
+      <div class="subtitle">02 Jan - Buffet Dinner Menu</div>
+      
+      <div class="price-box">
+        Unlimited Buffet Experience<br>
+        <span style="color: #d4af37;">₹ 749 + GST</span>
+      </div>
 
-    <h2>Welcome Drinks</h2>
-    <div class="item-row"><span class="item-name">Buttermilk</span></div>
-    <div class="item-row"><span class="item-name">Mocktail</span></div>
+      <div class="columns">
+        <div class="column">
+          <h2>Welcome Drinks</h2>
+          <div class="item"><span>Buttermilk</span></div>
+          <div class="item"><span>Mocktail</span></div>
 
-    <h2>Soups</h2>
-    <div class="item-row"><span class="item-name">Veg: Roasted Pumpkin Soup</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: Chicken Manchow Soup</span></div>
+          <h2>Soups</h2>
+          <div class="item"><span>Veg:</span> Roasted Pumpkin Soup</div>
+          <div class="item"><span>Non-Veg:</span> Chicken Manchow Soup</div>
 
-    <h2>Salad Bar</h2>
-    <div class="item-row"><span class="item-name">Green Garden Salad</span></div>
-    <div class="item-row"><span class="item-name">Pasta Salad</span></div>
-    <div class="item-row"><span class="item-name">Fruit Salad</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: Devil Egg Salad</span></div>
+          <h2>Salad Bar</h2>
+          <div class="item"><span>Greens:</span> Green Garden Salad, Pasta Salad, Fruit Salad</div>
+          <div class="item"><span>Non-Veg:</span> Devil Egg Salad</div>
+          <div class="item"><span>Curd:</span> Plain Curd, Mix Veg Raita, Curd Rice</div>
 
-    <h2>Curd Preparation</h2>
-    <div class="item-row"><span class="item-name">Plain Curd</span></div>
-    <div class="item-row"><span class="item-name">Mix Veg Raita</span></div>
-    <div class="item-row"><span class="item-name">Curd Rice</span></div>
+          <h2>Starters</h2>
+          <div class="item"><span>Veg:</span> Paneer Banjara Tikka, Corn Salt & Pepper</div>
+          <div class="item"><span>Non-Veg:</span> Mutton Tikki Kebab, KFC Fried Chicken, Prawns Koliwada, Cajun Spiced Fried Fish</div>
+        </div>
 
-    <h2>Starters</h2>
-    <div class="item-row"><span class="item-name">Veg: Paneer Banjara Tikka</span></div>
-    <div class="item-row"><span class="item-name">Veg: Corn Salt & Pepper</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: Mutton Tikki Kebab</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: KFC Fried Chicken</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: Prawns Koliwada</span></div>
-    <div class="item-row"><span class="item-name">Non-Veg: Cajun Spiced Fried Fish</span></div>
+        <div class="column">
+          <h2>Live Counter</h2>
+          <div class="item">Mumbai Bhel</div>
+          <div class="item">Pani Puri</div>
 
-    <h2>Live Counter</h2>
-    <div class="item-row"><span class="item-name">Mumbai Bhel</span></div>
-    <div class="item-row"><span class="item-name">Pani Puri</span></div>
+          <h2>Main Course</h2>
+          <div class="item"><span>Indian Veg:</span> Paneer Pasanda, Subz Nizami Handi, Ringan No Oro, Corn Palak</div>
+          <div class="item"><span>Comfort:</span> Moong Dal Mughlai, Masala Khichdi, Steamed Rice</div>
+          <div class="item"><span>Oriental:</span> Green Thai Curry (Veg), Butter Garlic Rice</div>
+          <div class="item"><span>Non-Veg:</span> Mutton Rara, Chicken Hyderabadi, Egg Dum Biryani</div>
 
-    <h2>Main Course</h2>
-    <div class="item-row"><span class="item-name">Paneer Pasanda</span></div>
-    <div class="item-row"><span class="item-name">Subz Nizami Handi</span></div>
-    <div class="item-row"><span class="item-name">Ringan No Oro (Baingan Bharta)</span></div>
-    <div class="item-row"><span class="item-name">Corn Palak</span></div>
-    <div class="item-row"><span class="item-name">Moong Dal Mughlai</span></div>
-    <div class="item-row"><span class="item-name">Masala Khichdi</span></div>
-    <div class="item-row"><span class="item-name">Steamed Rice</span></div>
-    <div class="item-row"><span class="item-name">Green Thai Curry (Veg)</span></div>
-    <div class="item-row"><span class="item-name">Butter Garlic Rice</span></div>
-    <div class="item-row"><span class="item-name">Mutton Rara</span></div>
-    <div class="item-row"><span class="item-name">Chicken Hyderabadi</span></div>
-    <div class="item-row"><span class="item-name">Egg Dum Biryani</span></div>
+          <h2>Dessert</h2>
+          <div class="item">Malpua, Malai Kalakand</div>
+          <div class="item">Shrikhand</div>
+          <div class="item">Chocolate Pudding</div>
+          <div class="item">Ice-Cream</div>
+        </div>
+      </div>
 
-    <h2>Dessert</h2>
-    <div class="item-row"><span class="item-name">Malpua</span></div>
-    <div class="item-row"><span class="item-name">Malai Kalakand</span></div>
-    <div class="item-row"><span class="item-name">Shrikhand</span></div>
-    <div class="item-row"><span class="item-name">Chocolate Pudding</span></div>
-    <div class="item-row"><span class="item-name">Ice-Cream</span></div>
+      <div class="footer">
+        Service Charge as applicable • Hotel Pam Premium
+      </div>
+  </div>
 
-</div>
-
-<script>
+  <script>
     function generatePDF() {
-        const element = document.getElementById('menu-content');
-        const opt = {
-            margin:       [0.5, 0.5, 0.5, 0.5],
-            filename:     'Hotel_Pam_Premium_02Jan_Menu.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(element).save();
+      var element = document.getElementById('menu-content');
+      var opt = {
+        margin:       0.3,
+        filename:     'Hotel_Pam_Premium_02Jan.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
     }
-</script>
+  </script>
 
 </body>
 </html>
